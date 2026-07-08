@@ -1,0 +1,3749 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALTIKX — Valentin Auger · Coordination & Production Événementielle</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-mid: #F0EAE0;
+    --lavender: #C8B8F0;
+    --lavender-deep: #9B84E8;
+    --lavender-dark: #6B4FBB;
+    --mint: #A8E6D4;
+    --mint-deep: #5DC4A8;
+    --blush: #F2C4C4;
+    --blush-deep: #D48888;
+    --amber: #F5D67A;
+    --amber-deep: #D4A830;
+    --charcoal: #1A1A2E;
+    --black: #111118;
+    --jet: #0B0B10;
+    --ink: #08080C;
+    --smoke: #2A2A38;
+    --surface-dark: #15151F;
+    --purple-light: #EDE8FF;
+    --purple-bg: #F5F0FF;
+    --stripe-lav: #D4C8F8;
+    --stripe-cream: #FAF7F2;
+    --text-dark: #1A1A2E;
+    --text-mid: #4A4A6A;
+    --text-light: #8A8AAA;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--cream);
+    color: var(--text-dark);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250,247,242,0.96);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(155,132,232,0.2);
+  }
+  .nav-logo {
+    font-family: 'Anton', sans-serif;
+    font-size: 20px;
+    color: var(--lavender-dark);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--text-mid);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lavender-dark); }
+
+  /* ─── HERO — TUNNEL FESTIVAL ─── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #2D1B6E;
+  }
+
+  /* Animated vertical stripe rolls */
+  .hero-stripes-v {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      #1A0A4E   0px,  #1A0A4E  55px,
+      #2D1B6E  55px,  #2D1B6E 110px,
+      #4A2F9A 110px,  #4A2F9A 165px,
+      #6B4FBB 165px,  #6B4FBB 220px,
+      #9B84E8 220px,  #9B84E8 275px,
+      #C8B8F0 275px,  #C8B8F0 330px,
+      #9B84E8 330px,  #9B84E8 385px,
+      #6B4FBB 385px,  #6B4FBB 440px,
+      #4A2F9A 440px,  #4A2F9A 495px,
+      #2D1B6E 495px,  #2D1B6E 550px,
+      #1A0A4E 550px,  #1A0A4E 605px,
+      #2D1B6E 605px,  #2D1B6E 660px,
+      #4A2F9A 660px,  #4A2F9A 715px,
+      #6B4FBB 715px,  #6B4FBB 770px,
+      #9B84E8 770px,  #9B84E8 825px,
+      #C8B8F0 825px,  #C8B8F0 880px
+    );
+    animation: stripeRoll 22s linear infinite;
+    opacity: 0.9;
+  }
+
+  @keyframes stripeRoll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(880px); }
+  }
+
+  /* Tunnel rectangles — centered, receding depth perspective */
+  .hero-tunnel {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+  .tunnel-rect {
+    position: absolute;
+    border: 3px solid rgba(200,184,240,0.22);
+    border-radius: 4px;
+    animation: tunnelPulse 4s ease-in-out infinite;
+  }
+  .tunnel-rect:nth-child(1)  { width: 98vw;  height: 96vh;  animation-delay: 0s;    border-color: rgba(255,255,255,0.10); }
+  .tunnel-rect:nth-child(2)  { width: 84vw;  height: 83vh;  animation-delay: 0.4s;  border-color: rgba(255,255,255,0.13); }
+  .tunnel-rect:nth-child(3)  { width: 71vw;  height: 70vh;  animation-delay: 0.8s;  border-color: rgba(255,255,255,0.16); }
+  .tunnel-rect:nth-child(4)  { width: 58vw;  height: 57vh;  animation-delay: 1.2s;  border-color: rgba(255,255,255,0.20); }
+  .tunnel-rect:nth-child(5)  { width: 45vw;  height: 44vh;  animation-delay: 1.6s;  border-color: rgba(255,255,255,0.24); }
+  .tunnel-rect:nth-child(6)  { width: 32vw;  height: 31vh;  animation-delay: 2.0s;  border-color: rgba(255,255,255,0.28); }
+  .tunnel-rect:nth-child(7)  { width: 19vw;  height: 18vh;  animation-delay: 2.4s;  border-color: rgba(255,255,255,0.35); }
+  .tunnel-rect:nth-child(8)  { width: 8vw;   height: 7vh;   animation-delay: 2.8s;  border-color: rgba(255,255,255,0.45); }
+
+  @keyframes tunnelPulse {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.012); }
+  }
+
+  /* Central dark house shape — like the poster */
+  .hero-house {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(460px, 68vw);
+    height: min(520px, 72vh);
+    clip-path: polygon(50% 0%, 100% 22%, 100% 100%, 0% 100%, 0% 22%);
+    background: linear-gradient(180deg, #0D0520 0%, #06021A 60%, #0D0828 100%);
+    opacity: 0.88;
+    pointer-events: none;
+  }
+
+  /* Hero content — centered absolute */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    padding: 0 24px;
+  }
+
+  /* Eyebrow */
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(10px, 1.4vw, 13px);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 8px;
+  }
+
+  /* VALENTIN in cream — large, fully readable */
+  .hero-name-valentin {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(72px, 18vw, 220px);
+    line-height: 0.82;
+    color: #FAF7F2;
+    letter-spacing: -4px;
+    text-transform: uppercase;
+    display: block;
+    text-shadow:
+      0 0 60px rgba(0,0,0,0.9),
+      0 4px 20px rgba(0,0,0,0.75),
+      0 2px 0 rgba(0,0,0,0.4);
+  }
+
+  /* AUGER in cream/white */
+  .hero-name-auger {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(72px, 18vw, 220px);
+    line-height: 0.82;
+    color: var(--cream);
+    letter-spacing: -4px;
+    text-transform: uppercase;
+    display: block;
+    text-shadow: 0 4px 24px rgba(0,0,0,0.4);
+  }
+
+  /* Role subtitle under name */
+  .hero-role {
+    font-family: 'DM Mono', monospace;
+    font-size: clamp(11px, 1.6vw, 15px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    margin-top: 14px;
+  }
+
+  /* Divider line */
+  .hero-divider {
+    width: 100%;
+    max-width: 560px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    margin: 20px 0 16px;
+  }
+
+  /* Freelance tag */
+  .hero-freelance {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(18px, 3.5vw, 40px);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: #C8B8F0;
+    display: inline-block;
+  }
+
+  /* Date badge */
+  .hero-date-badge {
+    margin-top: 32px;
+    background: rgba(255,255,255,0.95);
+    color: #111;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(14px, 2vw, 20px);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 8px 28px;
+    border-radius: 3px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+
+  /* Scroll hint */
+  .hero-scroll {
+    position: absolute;
+    bottom: 28px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    animation: bounce 2s ease-in-out infinite;
+  }
+  .hero-scroll::after { content: '↓'; font-size: 14px; line-height: 1; color: rgba(255,255,255,0.55); }
+
+  /* Legacy – hide old hero sub-elements if any remain */
+  .hero-top-band, .hero-bottom, .hero-ellipse-wrap { display: none !important; }
+
+  /* ─── OLD ELLIPSE CSS (kept for other potential refs) ─── */
+  .ellipse-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    opacity: 0.7;
+    margin-bottom: 20px;
+  }
+  .lineup-poster-row {
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    color: var(--charcoal);
+    line-height: 1;
+    letter-spacing: -0.5px;
+    display: block;
+    white-space: nowrap;
+  }
+  .lineup-poster-row.xl { font-size: clamp(30px, 5.5vw, 68px); }
+  .lineup-poster-row.lg { font-size: clamp(22px, 4vw, 52px); }
+  .lineup-poster-row.md { font-size: clamp(16px, 2.5vw, 34px); }
+  .lineup-poster-row.sm { font-size: clamp(12px, 1.8vw, 22px); }
+  .lineup-poster-row .bullet {
+    font-size: 0.55em;
+    vertical-align: middle;
+    margin: 0 8px;
+    color: var(--mint-deep);
+    opacity: 0.85;
+  }
+  .lineup-poster-row .bullet.amber-b { color: var(--amber-deep); }
+  .ellipse-divider {
+    width: 60%;
+    height: 1.5px;
+    background: rgba(107,79,187,0.15);
+    margin: 16px auto;
+  }
+  .ellipse-footer {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mint-deep);
+    margin-top: 20px;
+  }
+
+  .scroll-cta {
+    margin-top: 36px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    animation: bounce 2s ease-in-out infinite;
+    opacity: 0.6;
+  }
+  .scroll-cta::after { content: '↓'; font-size: 20px; opacity: 1; }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+  }
+
+  /* ─── SECTION UTILITIES ─── */
+  .section-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin-bottom: 12px;
+    display: block;
+    text-align: left;
+    line-height: 1.4;
+  }
+  .section-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(48px, 8vw, 100px);
+    line-height: 0.9;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    display: block;
+    text-align: left;
+    margin-top: 0;
+  }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--cream);
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #about::before {
+    content: 'VALTIKX';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Anton', sans-serif;
+    font-size: 220px;
+    color: rgba(155,132,232,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .about-grid {
+    max-width: 1100px;
+    margin: 0 auto 0 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .about-left .section-title { color: var(--charcoal); }
+  .about-left .section-title span {
+    -webkit-text-stroke: 2px var(--lavender-deep);
+    color: transparent;
+  }
+  .about-right p {
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+  }
+  .contact-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1.5px solid rgba(107,79,187,0.25);
+    border-radius: 2px;
+    padding: 8px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--lavender-dark);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--lavender-deep);
+    background: rgba(155,132,232,0.08);
+  }
+
+  /* ─── LINEUP / EXPERIENCES ─── */
+  #lineup {
+    background: var(--jet);
+    padding: 120px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  #lineup::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.025) 0, rgba(255,255,255,0.025) 1px,
+      transparent 1px, transparent 64px
+    );
+    pointer-events: none;
+  }
+  .lineup-header {
+    padding: 0 60px;
+    margin-bottom: 80px;
+    max-width: none;
+  }
+  .lineup-header .section-eyebrow { color: var(--lavender); }
+  .lineup-header .section-title { color: var(--cream); }
+
+  /* Bilan — frise chronologique complète 2025-2026 */
+  .bilan-timeline { padding: 40px 60px 0; }
+  .bilan-timeline-inner { display: flex; flex-direction: column; gap: 20px; }
+  .bilan-left { flex: none; }
+  .bilan-right { flex: none; width: 100%; min-width: 0; }
+  .bilan-timeline-header { margin-bottom: 24px; }
+  @media (max-width: 768px) {
+    .bilan-timeline { padding: 24px 20px 0; }
+  }
+  .bilan-timeline-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    opacity: 0.8;
+    margin-bottom: 6px;
+  }
+  .bilan-timeline-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+  }
+  .bilan-timeline-scroll {
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .bilan-timeline-track {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 36px;
+    padding: 24px 8px 4px;
+    min-width: max-content;
+  }
+  .bilan-timeline-track::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px;
+    height: 2px;
+    background: rgba(255,255,255,0.15);
+  }
+  .bilan-timeline-pt {
+    position: relative;
+    flex: 0 0 auto;
+    width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .bilan-timeline-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--lavender-deep);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 3px rgba(155,132,232,0.25);
+    flex-shrink: 0;
+  }
+  .bilan-timeline-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.5px;
+    color: rgba(250,247,242,0.7);
+    line-height: 1.5;
+  }
+  .bilan-timeline-label strong {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--cream);
+    margin-top: 2px;
+  }
+  @media (max-width: 700px) {
+    .bilan-timeline { padding: 24px 24px 0; }
+  }
+
+  /* Marquee */
+  .marquee-wrap {
+    overflow: hidden;
+    border-top: 3px solid var(--charcoal);
+    border-bottom: 3px solid var(--charcoal);
+    padding: 14px 0;
+    margin-bottom: 80px;
+    background: var(--lavender-deep);
+  }
+  .marquee-track {
+    display: flex;
+    gap: 48px;
+    width: max-content;
+    animation: marquee 24s linear infinite;
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  .marquee-item {
+    font-family: 'Anton', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cream);
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 48px;
+  }
+  .marquee-item::after {
+    content: '✦';
+    color: var(--lavender);
+    font-size: 20px;
+    letter-spacing: 0;
+    flex-shrink: 0;
+  }
+  .marquee-item .dot { display: none; }
+
+  /* Lineup rows */
+  .lineup-grid { padding: 0 60px; }
+
+  /* Year accordion groups */
+  .year-group { border-bottom: 1.5px solid rgba(255,255,255,0.1); }
+  .year-group:first-child { border-top: 1.5px solid rgba(255,255,255,0.1); }
+  .year-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 36px 8px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: background 0.2s;
+  }
+  .year-head:hover { background: rgba(255,255,255,0.03); }
+  .year-head-left { display: flex; align-items: baseline; gap: 24px; }
+  .year-num {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 0.85;
+    color: var(--cream);
+    letter-spacing: -1px;
+  }
+  .year-count {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    opacity: 0.8;
+  }
+  .year-chevron {
+    width: 38px; height: 38px;
+    flex-shrink: 0;
+    border: 1.5px solid var(--lavender);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--lavender);
+    font-size: 18px;
+    transition: transform 0.35s ease, background 0.2s, color 0.2s;
+  }
+  .year-group.open .year-chevron { transform: rotate(45deg); background: var(--lavender); color: var(--jet); }
+  .year-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  .year-group.open .year-body { max-height: 4000px; }
+  .year-body-inner { padding-bottom: 24px; }
+
+  .lineup-act {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    align-items: start;
+    padding: 28px 8px;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    gap: 40px;
+    transition: background 0.2s;
+  }
+  .lineup-act:hover { background: rgba(155,132,232,0.07); }
+  .lineup-act:hover .act-tag {
+    background: var(--lavender);
+    color: var(--jet);
+    border-color: var(--lavender);
+  }
+  .act-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--lavender);
+    text-transform: uppercase;
+    padding-top: 4px;
+    opacity: 0.85;
+  }
+  .act-name {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(22px, 3.2vw, 42px);
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .act-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    color: var(--lavender);
+    font-weight: 500;
+    margin-top: 6px;
+  }
+  .act-details {
+    font-size: 14px;
+    color: rgba(250,247,242,0.6);
+    line-height: 1.6;
+    margin-top: 10px;
+    max-width: 600px;
+  }
+  .act-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1.5px solid var(--lavender);
+    color: var(--lavender);
+    padding: 6px 14px;
+    border-radius: 2px;
+    white-space: nowrap;
+    transition: all 0.2s;
+    align-self: flex-start;
+  }
+
+  /* ─── FEATURED / HIGHLIGHTS ─── */
+  #featured {
+    background: var(--lavender-deep);
+    padding: 120px 0 0;
+    overflow: hidden;
+  }
+  .featured-header {
+    margin-bottom: 56px;
+    max-width: none;
+    margin-left: 0;
+    padding: 0 60px;
+  }
+  .featured-header .section-title { color: var(--cream); }
+  .featured-header .section-eyebrow { color: var(--lavender); }
+
+  /* Stage & track */
+  .feat-stage {
+    position: relative;
+    width: 100%;
+  }
+  .feat-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    gap: 0;
+  }
+  .feat-track::-webkit-scrollbar { display: none; }
+
+  /* Each slide — full-bleed photo card */
+  .feat-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-height: 520px;
+    display: block;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+  }
+  .feat-slide-bg {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 520px;
+    height: 100%;
+  }
+  .feat-slide--mint .feat-slide-bg  { background: linear-gradient(135deg, #5DC4A8 0%, #A8E6D4 60%, #BCE3D6 100%); }
+  .feat-slide--amber .feat-slide-bg { background: linear-gradient(135deg, #D4A830 0%, #F5D67A 60%, #F0D499 100%); }
+  .feat-slide--blush .feat-slide-bg { background: linear-gradient(135deg, #D48888 0%, #F2C4C4 60%, #F5DADA 100%); }
+
+  .feat-slide-stripe {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px,
+      transparent 1px, transparent 28px
+    );
+  }
+  .feat-slide-photo-mark {
+    position: relative;
+    z-index: 2;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.85);
+  }
+  .feat-slide-photo-mark svg { width: 42px; height: 42px; }
+
+  /* Caption overlay — bottom scrim like a real photo card */
+  .feat-slide-body {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 80px 60px 44px;
+    background: linear-gradient(180deg, transparent 0%, rgba(11,11,16,0.15) 35%, rgba(11,11,16,0.78) 100%);
+  }
+  .feat-slide-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--lavender);
+    margin-bottom: 14px;
+  }
+  .feat-slide-title {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 3.5vw, 52px);
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 1.05;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .feat-slide-desc {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.78);
+    margin-bottom: 28px;
+    max-width: 560px;
+  }
+  .feat-slide-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender-dark);
+    background: var(--cream);
+    border: none;
+    padding: 14px 28px;
+    border-radius: 40px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background 0.2s, transform 0.2s;
+    font-weight: 600;
+  }
+  .feat-slide-cta:hover { background: var(--lavender); transform: translateX(4px); }
+
+  /* Nav bar */
+  .feat-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 28px 60px;
+    background: var(--lavender-dark);
+  }
+  .feat-nav-btn {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.08);
+    color: var(--cream);
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .feat-nav-btn:hover { background: rgba(255,255,255,0.2); transform: scale(1.1); }
+  .feat-dots { display: flex; gap: 8px; align-items: center; }
+  .feat-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .feat-dot.active { background: var(--cream); transform: scale(1.4); }
+
+  @media (max-width: 900px) {
+    .feat-slide-body { padding: 60px 28px 32px; }
+    .feat-slide-title { font-size: 32px; }
+    .feat-slide-photo-mark { width: 72px; height: 72px; }
+    .feat-slide-photo-mark svg { width: 32px; height: 32px; }
+  }
+
+  /* Keep old classes for modal compat */
+  .card-bg-mint  { background: linear-gradient(135deg, #5DC4A8, #A8E6D4); }
+  .card-bg-amber { background: linear-gradient(135deg, #D4A830, #F5D67A); }
+  .card-bg-blush { background: linear-gradient(135deg, #D48888, #F2C4C4); }
+
+  /* ─── AVIS — CAROUSEL DECK ─── */
+  #avis {
+    background: var(--charcoal);
+    padding: 110px 60px 100px;
+    position: relative;
+    overflow: hidden;
+  }
+  #avis::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 10%, rgba(155,132,232,0.12), transparent 55%),
+                radial-gradient(circle at 10% 90%, rgba(93,196,168,0.08), transparent 55%);
+    pointer-events: none;
+  }
+  .avis-inner { position: relative; z-index: 1; max-width: 1280px; margin: 0 auto; }
+  .avis-header { margin-bottom: 52px; }
+  .avis-header .section-eyebrow { color: var(--mint); }
+  .avis-header .section-title { color: var(--cream); }
+
+  /* Carousel outer row */
+  .avis-carousel-outer {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .avis-car-prev, .avis-car-next {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(250,247,242,0.3);
+    background: transparent;
+    color: var(--cream);
+    font-size: 15px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .avis-car-prev:hover, .avis-car-next:hover { background: rgba(255,255,255,0.12); transform: scale(1.08); }
+
+  .avis-carousel-track-clip {
+    flex: 1;
+    overflow: hidden;
+  }
+  .avis-carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+    touch-action: pan-y;
+    user-select: none;
+  }
+
+  /* Each slide — width driven by JS via CSS variable */
+  .avis-slide {
+    flex: 0 0 var(--slide-w, 300px);
+    min-width: 0;
+  }
+
+  /* Double flip card — needs preserve-3d on wrapper */
+  .avis-double-card {
+    position: relative;
+    height: 380px;
+    perspective: 1200px;
+    cursor: pointer;
+    transform-style: preserve-3d;
+  }
+  .avis-dcard-front, .avis-dcard-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.7s cubic-bezier(.3,.8,.3,1);
+    box-shadow: 0 20px 48px rgba(0,0,0,0.38);
+    overflow: hidden;
+  }
+  .avis-dcard-front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 28px;
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.12);
+    transform: rotateY(0deg);
+  }
+  .avis-dcard-back {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 32px 28px 28px;
+    transform: rotateY(180deg);
+  }
+  .avis-double-card:hover .avis-dcard-front { transform: rotateY(-180deg); }
+  .avis-double-card:hover .avis-dcard-back  { transform: rotateY(0deg); }
+
+  .avis-dcard-badge {
+    font-family: 'Anton', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 20px;
+    align-self: flex-start;
+  }
+  .avis-dcard-fest {
+    font-family: 'Anton', sans-serif;
+    font-size: 26px;
+    color: var(--cream);
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    text-align: center;
+  }
+  .avis-dcard-visual {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    border: 2px solid rgba(255,255,255,0.2);
+  }
+  .avis-dcard-tap {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    position: absolute;
+    bottom: 18px;
+  }
+
+  .avis-dcard-quote-mark {
+    font-family: 'Anton', sans-serif;
+    font-size: 68px;
+    color: rgba(255,255,255,0.3);
+    line-height: 0.8;
+    margin-bottom: 10px;
+  }
+  .avis-dcard-quote {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: rgba(255,255,255,0.92);
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .avis-dcard-author {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 12px;
+  }
+  .avis-dcard-author strong {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 2px;
+  }
+
+  /* Dots */
+  .avis-dots-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 32px;
+  }
+  .avis-cdot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(250,247,242,0.25);
+    cursor: pointer;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .avis-cdot.active { background: var(--cream); transform: scale(1.4); }
+
+  @media (max-width: 700px) {
+    #avis { padding: 80px 20px 70px; }
+    .avis-car-prev, .avis-car-next { display: none; }
+  }
+
+  /* ─── NETWORK MAP ─── */
+  #network {
+    background: var(--jet);
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  #network::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 50%, rgba(245,160,32,0.06) 0%, transparent 65%),
+      radial-gradient(ellipse at 80% 20%, rgba(155,132,232,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 80%, rgba(93,196,168,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .network-header {
+    max-width: 1100px;
+    margin: 0 auto 20px;
+  }
+  .network-title { color: var(--cream); }
+  .network-title-accent {
+    -webkit-text-stroke: 2px #F5A020;
+    color: transparent;
+  }
+  .network-intro {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(250,247,242,0.6);
+    margin-top: 16px;
+    max-width: 560px;
+  }
+  .network-intro strong { color: #F5A020; }
+
+  /* Legend */
+  .network-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 32px;
+  }
+  .network-leg-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.55);
+  }
+  .network-leg-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+  }
+
+  /* Canvas */
+  .network-canvas-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  #network-canvas {
+    display: block;
+    width: 100%;
+    cursor: grab;
+  }
+  #network-canvas:active { cursor: grabbing; }
+
+  /* Tooltip */
+  .network-tooltip {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(11,11,16,0.92);
+    border: 1px solid rgba(245,160,32,0.35);
+    border-radius: 10px;
+    padding: 10px 16px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--cream);
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.18s;
+    backdrop-filter: blur(8px);
+    z-index: 20;
+    max-width: 220px;
+    white-space: normal;
+  }
+  .network-tooltip.visible { opacity: 1; }
+  .network-tooltip strong { display: block; font-size: 14px; color: #F5A020; margin-bottom: 2px; }
+  .network-tooltip small { display: block; font-size: 11px; color: rgba(250,247,242,0.5); margin-top: 3px; letter-spacing: 0.5px; }
+
+  /* Stats bar */
+  .network-stats {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin: 40px auto 0;
+    max-width: 900px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+  .network-stat {
+    flex: 1;
+    text-align: center;
+    padding: 28px 16px;
+    border-right: 1px solid rgba(255,255,255,0.08);
+    background: rgba(255,255,255,0.02);
+  }
+  .network-stat:last-child { border-right: none; }
+  .network-stat-n {
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(28px, 4vw, 44px);
+    color: #F5A020;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .network-stat-l {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(250,247,242,0.45);
+  }
+
+  @media (max-width: 768px) {
+    #network { padding: 80px 20px 60px; }
+    .network-stats { flex-wrap: wrap; }
+    .network-stat { flex: 0 0 50%; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  }
+
+  /* ─── SKILLS ─── */
+  #skills {
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px;
+    background: var(--cream-mid);
+  }
+  .skills-bg {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      #FAF7F2 0, #FAF7F2 52px,
+      #E8E0FA 52px, #E8E0FA 72px,
+      #FAF7F2 72px, #FAF7F2 124px,
+      #F0E8FF 124px, #F0E8FF 140px
+    );
+    opacity: 0.6;
+  }
+  .skills-content {
+    position: relative;
+    z-index: 1;
+  }
+  .skills-header .section-title { color: var(--charcoal); }
+  .skills-header .section-eyebrow { color: var(--lavender-dark); }
+  /* Radar / toile d'araignée */
+  .skills-radar-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 56px;
+    background: var(--cream);
+    border: 1.5px solid rgba(155,132,232,0.2);
+    padding: 40px 48px;
+  }
+  .skills-radar-svg { width: 100%; max-width: 440px; display: block; margin: 0 auto; overflow: visible; }
+  .radar-grid-line { fill: none; stroke: rgba(26,26,46,0.12); stroke-width: 1; }
+  .radar-spoke { stroke: rgba(26,26,46,0.12); stroke-width: 1; }
+  .radar-shape {
+    fill: rgba(155,132,232,0.18);
+    stroke: var(--lavender-dark);
+    stroke-width: 2.5;
+    stroke-linejoin: round;
+    opacity: 0;
+    transform: scale(0.6);
+    transform-origin: 220px 220px;
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(.2,.8,.2,1);
+  }
+  .skills-radar-wrap.in-view .radar-shape { opacity: 1; transform: scale(1); }
+  .radar-pt {
+    transform-origin: 220px 220px;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.4s;
+  }
+  .skills-radar-wrap.in-view .radar-pt { opacity: 1; }
+  .radar-axis-label {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    fill: var(--text-mid);
+  }
+  .radar-axis-pct {
+    font-family: 'Anton', sans-serif;
+  }
+  .skills-radar-legend-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender-dark);
+    margin-bottom: 18px;
+  }
+  .skills-radar-legend { display: flex; flex-direction: column; gap: 14px; }
+  .radar-legend-row { display: flex; align-items: center; gap: 12px; }
+  .radar-legend-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+  .radar-legend-name { font-family: 'Space Grotesk', sans-serif; font-size: 14px; font-weight: 600; color: var(--charcoal); flex: 1; }
+  .radar-legend-pct { font-family: 'Anton', sans-serif; font-size: 18px; }
+  .radar-legend-note {
+    margin-top: 20px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    color: var(--text-mid);
+    border-top: 1px solid rgba(155,132,232,0.2);
+    padding-top: 18px;
+  }
+  @media (max-width: 900px) {
+    .skills-radar-wrap { grid-template-columns: 1fr; padding: 32px 24px; }
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .skill-block {
+    background: var(--cream);
+    border: 1.5px solid rgba(155,132,232,0.2);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-block:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(107,79,187,0.12);
+  }
+  .skill-block::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    background: var(--lavender);
+    opacity: 0.3;
+    border-radius: 0 0 0 80px;
+  }
+  .skill-icon { font-size: 32px; margin-bottom: 16px; }
+  .skill-block h3 {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    background: var(--purple-light);
+    color: var(--lavender-dark);
+    padding: 4px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .skill-level-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+  }
+  .skill-level-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+  }
+  .skill-level-pct {
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    color: var(--lavender-dark);
+  }
+  .skill-level-track {
+    height: 7px;
+    background: rgba(26,26,46,0.08);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .skill-level-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--lavender-deep), var(--lavender-dark));
+    width: 0;
+    transition: width 1.2s cubic-bezier(.4,0,.2,1);
+  }
+  .skill-block.in-view .skill-level-fill { width: var(--lvl); }
+
+  /* ─── BÉNÉVOLATS STRIP ─── */
+  #benevols {
+    background: var(--lavender-dark);
+    padding: 100px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #benevols::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 2px,
+      transparent 2px, transparent 80px
+    );
+  }
+  .benevols-inner {
+    position: relative;
+    z-index: 1;
+  }
+  .benevols-inner .section-eyebrow { color: var(--lavender); }
+  .benevols-inner .section-title { color: var(--cream); }
+  .benev-hint {
+    margin-top: 18px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--lavender);
+    opacity: 0.85;
+  }
+
+  /* ─── BÉNÉVOLATS — RACK CARROUSEL PLEINE LARGEUR (3 COLONNES) ─── */
+  .benev-fullbleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 52px;
+    padding: 0 32px;
+  }
+  .benev-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    max-width: 1700px;
+    margin: 0 auto;
+  }
+  @media (max-width: 900px) {
+    .benev-columns { grid-template-columns: 1fr; gap: 52px; }
+  }
+
+  .benev-col-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .benev-col-icon { font-size: 26px; line-height: 1; }
+  .benev-col-title {
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+  .benev-col-count {
+    margin-left: 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--lavender);
+    opacity: 0.7;
+  }
+
+  .benev-carousel-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  /* Clip wrapper: scroll container, exact width, hides overflow */
+  .benev-track-clip {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .benev-track {
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 12px 0 18px;
+    scrollbar-width: none;
+    width: 100%;
+  }
+  .benev-track::-webkit-scrollbar { display: none; }
+
+  .benev-car-btn {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.07);
+    color: var(--cream);
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .benev-car-btn:hover { background: rgba(255,255,255,0.18); transform: scale(1.08); }
+  @media (max-width: 900px) { .benev-car-btn { display: none; } }
+
+  .benev-flip-card {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 230px;
+    perspective: 900px;
+    cursor: pointer;
+    scroll-snap-align: start;
+    box-sizing: border-box;
+  }
+  @media (max-width: 500px) { .benev-flip-card { flex: 0 0 100%; width: 100%; height: 210px; } }
+  .benev-flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.7s cubic-bezier(.4,0,.2,1);
+    transform-style: preserve-3d;
+  }
+  .benev-flip-card:hover .benev-flip-inner { transform: rotateY(180deg); }
+  .benev-card-front, .benev-card-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border: 1.5px solid rgba(255,255,255,0.18);
+  }
+  .benev-card-front {
+    background: rgba(255,255,255,0.14);
+    border: 1.5px solid rgba(255,255,255,0.32);
+    justify-content: space-between;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .benev-card-back {
+    background: var(--cream);
+    color: var(--charcoal);
+    transform: rotateY(180deg);
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  .benev-card-icon { font-size: 24px; }
+  .benev-card-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 16px;
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+  .benev-card-hint {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    opacity: 0.55;
+    color: var(--cream);
+  }
+  .benev-card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border-radius: 20px;
+    align-self: flex-start;
+  }
+  .benev-card-back-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 15px;
+    text-transform: uppercase;
+    color: var(--charcoal);
+  }
+  .benev-card-role {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: var(--text-mid);
+  }
+
+  /* Accents par colonne — fonds distincts pour lisibilité */
+  .benev-col.sport .benev-card-front {
+    background: rgba(212,136,136,0.38);
+    border-color: rgba(242,196,196,0.65);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .benev-col.sport .benev-car-btn { border-color: rgba(212,136,136,0.5); }
+  .benev-col.sport .benev-card-tag { background: rgba(212,136,136,0.3); color: #F2C4C4; }
+  .benev-col.sport .benev-col-title { color: #F2C4C4; }
+  .benev-col.sport .benev-col-count { color: rgba(242,196,196,0.7); }
+
+  .benev-col.musique .benev-card-front {
+    background: rgba(245,214,122,0.32);
+    border-color: rgba(245,214,122,0.7);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .benev-col.musique .benev-car-btn { border-color: rgba(245,214,122,0.5); }
+  .benev-col.musique .benev-card-tag { background: rgba(245,214,122,0.25); color: #F5D67A; }
+  .benev-col.musique .benev-col-title { color: #F5D67A; }
+  .benev-col.musique .benev-col-count { color: rgba(245,214,122,0.7); }
+
+  .benev-col.salons .benev-card-front {
+    background: rgba(168,230,212,0.32);
+    border-color: rgba(168,230,212,0.7);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12);
+  }
+  .benev-col.salons .benev-car-btn { border-color: rgba(168,230,212,0.5); }
+  .benev-col.salons .benev-card-tag { background: rgba(168,230,212,0.25); color: #A8E6D4; }
+  .benev-col.salons .benev-col-title { color: #A8E6D4; }
+  .benev-col.salons .benev-col-count { color: rgba(168,230,212,0.7); }
+
+  /* ─── RSE ─── */
+  #rse {
+    background: var(--mint);
+    padding: 120px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  #rse::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      180deg,
+      rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 2px,
+      transparent 2px, transparent 48px
+    );
+  }
+  .rse-header {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 48px;
+  }
+  .rse-header .section-eyebrow { color: rgba(26,26,46,0.55); }
+  .rse-header .section-title { color: var(--charcoal); }
+  .rse-banner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto 28px;
+    background: rgba(255,255,255,0.55);
+    border: 1.5px solid rgba(93,196,168,0.3);
+    border-radius: 18px;
+    padding: 36px 40px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .rse-banner-text p {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--text-mid);
+    margin-bottom: 16px;
+  }
+  .rse-col-kpi { display: flex; flex-direction: column; gap: 14px; }
+  .rse-kpi-card {
+    background: rgba(255,255,255,0.65);
+    border: 1.5px solid rgba(93,196,168,0.35);
+    border-radius: 14px;
+    padding: 18px 20px;
+  }
+  .rse-kpi-card.amber-b { border-color: rgba(212,168,48,0.4); }
+  .rse-kpi-card.blush-b { border-color: rgba(212,136,136,0.4); }
+  .rse-kpi-icon { font-size: 20px; margin-bottom: 4px; }
+  .rse-kpi-card .rse-kpi-n {
+    font-family: 'Anton', sans-serif;
+    font-size: 34px;
+    color: var(--charcoal);
+    line-height: 1;
+  }
+  .rse-kpi-card .rse-kpi-n.green { color: var(--mint-deep); }
+  .rse-kpi-card .rse-kpi-n.amber { color: var(--amber-deep); }
+  .rse-kpi-card .rse-kpi-n.blush { color: var(--blush-deep); }
+  .rse-kpi-card .rse-kpi-l {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--text-mid);
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .rse-grid-bottom {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+  }
+  .rse-card {
+    background: rgba(255,255,255,0.6);
+    border: 1.5px solid rgba(93,196,168,0.3);
+    border-radius: 16px;
+    padding: 26px;
+  }
+  .rse-card-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mint-deep);
+    margin-bottom: 6px;
+  }
+  .rse-card-sub {
+    font-family: 'Anton', sans-serif;
+    font-size: 19px;
+    color: var(--charcoal);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .rse-donut-wrap { position: relative; width: 150px; height: 150px; margin: 0 auto 18px; }
+  .rse-donut-center {
+    position: absolute; inset: 0;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+  }
+  .rse-donut-n { font-family: 'Anton', sans-serif; font-size: 24px; color: var(--charcoal); line-height: 1; }
+  .rse-donut-l { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1px; color: var(--text-mid); margin-top: 3px; text-transform: uppercase; }
+  .rse-legend-row { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+  .rse-leg { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-mid); }
+  .rse-leg-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+  .rse-note {
+    margin-top: 14px;
+    padding: 11px 14px;
+    background: rgba(93,196,168,0.12);
+    border-radius: 10px;
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.55;
+  }
+  .rse-bars { display: flex; flex-direction: column; gap: 12px; }
+  .rse-bar-row { display: grid; grid-template-columns: 84px 1fr 38px; align-items: center; gap: 8px; }
+  .rse-bar-name { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-mid); text-align: right; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.5px; }
+  .rse-bar-track { height: 7px; background: rgba(26,26,46,0.08); border-radius: 4px; overflow: hidden; }
+  .rse-bar-fill { height: 100%; border-radius: 4px; transition: width 1.2s cubic-bezier(.4,0,.2,1); }
+  .rse-bar-val { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--text-mid); text-align: right; }
+  .rse-timeline { display: flex; flex-direction: column; gap: 16px; }
+  .rse-tl-item { display: flex; gap: 12px; align-items: flex-start; }
+  .rse-tl-icon {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 14px;
+    background: rgba(93,196,168,0.18); border: 1px solid rgba(93,196,168,0.35);
+  }
+  .rse-tl-label { font-family: 'Space Grotesk', sans-serif; font-size: 12.5px; font-weight: 600; color: var(--charcoal); margin-bottom: 2px; }
+  .rse-tl-desc { font-size: 11.5px; color: var(--text-mid); line-height: 1.55; }
+  .rse-savings { display: flex; gap: 10px; flex-wrap: wrap; }
+  .rse-saving {
+    text-align: center; padding: 10px 16px;
+    background: rgba(255,255,255,0.6); border-radius: 10px; border: 1px solid rgba(93,196,168,0.3);
+    min-width: 76px;
+  }
+  .rse-saving-n { font-family: 'Anton', sans-serif; font-size: 21px; color: var(--mint-deep); }
+  .rse-saving-l { font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.5px; color: var(--text-mid); margin-top: 2px; line-height: 1.3; text-transform: uppercase; }
+  @media (max-width: 900px) {
+    .rse-banner { grid-template-columns: 1fr; }
+    .rse-grid-bottom { grid-template-columns: 1fr; }
+  }
+
+  /* ─── CONTACT ─── */
+  #contact {
+    background: var(--charcoal);
+    padding: 140px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #contact::before {
+    content: 'VALTIKX';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Anton', sans-serif;
+    font-size: 260px;
+    color: rgba(155,132,232,0.04);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+  .contact-big {
+    position: relative;
+    z-index: 1;
+    font-family: 'Anton', sans-serif;
+    font-size: clamp(60px, 10vw, 140px);
+    text-transform: uppercase;
+    line-height: 0.85;
+    letter-spacing: -2px;
+  }
+  .contact-big .line1 { color: var(--cream); }
+  .contact-big .line2 {
+    -webkit-text-stroke: 2px var(--lavender);
+    color: transparent;
+  }
+  .contact-links {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 60px;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 2px solid var(--lavender);
+    padding: 16px 32px;
+    font-family: 'Anton', sans-serif;
+    font-size: 18px;
+    color: var(--cream);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .contact-link:hover { background: var(--lavender); color: var(--charcoal); }
+  .contact-link.primary { background: var(--lavender-deep); border-color: var(--lavender-deep); color: var(--cream); }
+  .contact-link.primary:hover { background: var(--lavender); }
+  footer-bottom {
+    position: relative;
+    z-index: 1;
+    display: block;
+    text-align: center;
+    margin-top: 80px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: rgba(250,247,242,0.25);
+    text-transform: uppercase;
+  }
+
+  /* ─── FEATURED MODAL / CAROUSEL ─── */
+  .feat-card { position: relative; }
+  .feat-card-cta {
+    font-family: 'DM Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--lavender-dark);
+    opacity: 0.7;
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .feat-card-cta::before { content: '◆'; font-size: 7px; }
+
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(8,8,12,0.88);
+    backdrop-filter: blur(6px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--jet);
+    border: 1.5px solid rgba(155,132,232,0.25);
+    border-radius: 6px;
+    max-width: 620px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+  }
+  .modal-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    z-index: 5;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(8,8,12,0.6);
+    border: 1.5px solid rgba(255,255,255,0.25);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .modal-close:hover { background: var(--lavender-dark); }
+
+  .modal-carousel { position: relative; aspect-ratio: 1.3; overflow: hidden; background: var(--smoke); }
+  .modal-carousel-track { display: flex; height: 100%; transition: transform 0.45s cubic-bezier(.4,0,.2,1); }
+  .modal-slide {
+    flex: 0 0 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .modal-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .modal-slide-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    color: rgba(26,26,46,0.45);
+  }
+  .modal-slide-placeholder svg { opacity: 0.55; width: 36px; height: 36px; }
+  .modal-slide-placeholder span {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .modal-nav-btn {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: rgba(8,8,12,0.55);
+    border: 1.5px solid rgba(255,255,255,0.3);
+    color: var(--cream);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    cursor: pointer;
+    z-index: 4;
+    transition: background 0.2s;
+  }
+  .modal-nav-btn:hover { background: var(--lavender-dark); }
+  .modal-nav-btn.prev { left: 16px; }
+  .modal-nav-btn.next { right: 16px; }
+  .modal-dots {
+    position: absolute;
+    bottom: 14px; left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    z-index: 4;
+  }
+  .modal-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.35); cursor: pointer; transition: background 0.2s, transform 0.2s; }
+  .modal-dot.active { background: var(--lavender); transform: scale(1.25); }
+  .modal-body { padding: 28px 32px 32px; }
+  .modal-body .act-name { color: var(--cream); font-size: 28px; }
+  .modal-body .act-role { color: var(--lavender); margin-top: 6px; }
+  .modal-body .act-details { color: rgba(250,247,242,0.65); margin-top: 12px; font-size: 14px; }
+
+  /* ─── REVEAL ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    nav { padding: 14px 20px; }
+    .nav-links { display: none; }
+    #about, #lineup, #featured, #skills, #benevols, #rse, #contact, #avis, #network {
+      padding-left: 20px; padding-right: 20px;
+    }
+    .lineup-header, .lineup-grid { padding-left: 20px; padding-right: 20px; }
+    .about-grid, .featured-cards { grid-template-columns: 1fr; gap: 40px; }
+    .rse-banner, .rse-grid-bottom { grid-template-columns: 1fr; gap: 20px; }
+    .lineup-act { grid-template-columns: 1fr; gap: 8px; }
+    .year-head { padding: 24px 4px; }
+    .year-num { font-size: 44px; }
+    .skills-compact-bloc { padding: 24px 20px 20px !important; }
+    .skills-compact-bloc > div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+    .skills-radar-wrap { grid-template-columns: 1fr !important; }
+    .hero-name-valentin, .hero-name-auger { font-size: clamp(56px, 16vw, 160px) !important; }
+    .section-title { font-size: clamp(36px, 8vw, 80px); }
+    .contact-big { font-size: clamp(36px, 10vw, 80px) !important; }
+    .contact-links { flex-direction: column; align-items: center; gap: 12px; }
+    .network-stats { flex-wrap: wrap; }
+    .network-stat { flex: 0 0 50%; }
+  }
+  @media (max-width: 480px) {
+    .hero-name-valentin, .hero-name-auger { font-size: clamp(44px, 15vw, 120px) !important; }
+    .hero-freelance { font-size: 22px !important; }
+    .bilan-timeline-track { gap: 24px !important; }
+    .skills-compact-bloc { padding: 18px 14px 14px !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">VALTIKX</a>
+  <ul class="nav-links">
+    <li><a href="#lineup">Expériences</a></li>
+    <li><a href="#benevols">Bénévolats</a></li>
+    <li><a href="#featured">Highlights</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#rse">RSE</a></li>
+    <li><a href="#network">Réseau</a></li>
+    <li><a href="#avis">Avis</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO — TUNNEL FESTIVAL -->
+<section id="hero">
+  <!-- Animated stripe background -->
+  <div class="hero-stripes-v"></div>
+
+  <!-- Tunnel depth rectangles -->
+  <div class="hero-tunnel">
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+    <div class="tunnel-rect"></div>
+  </div>
+
+  <!-- Dark house silhouette -->
+  <div class="hero-house"></div>
+
+  <!-- Content -->
+  <div class="hero-content">
+    <div class="hero-eyebrow">Bonjour, je suis</div>
+    <span class="hero-name-valentin">Valentin</span>
+    <span class="hero-name-auger">Auger</span>
+    <div class="hero-role">Coordination & Production Événementielle</div>
+    <div class="hero-divider"></div>
+    <div class="hero-freelance">Freelance</div>
+    <div class="hero-date-badge">VALTIKX · 2026</div>
+  </div>
+
+  <a href="#about" class="hero-scroll">Découvrir</a>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <div class="section-eyebrow" style="color: rgba(107,79,187,0.6);">À propos</div>
+      <h2 class="section-title">
+        L'influx<br>
+        <span>nerveux</span><br>
+        c'est moi
+      </h2>
+    </div>
+    <div class="about-right reveal">
+      <p>Globetrotter depuis 27 ans, <strong>l'aventure et la curiosité</strong> sont dans mes gènes. Animé par une véritable soif de connaissances, mes voyages et bénévolats m'ont permis de puiser dans la richesse des cultures et des événements.</p>
+      <p>Du scan de billets à la régie de bar, de la coordination VIP à la gestion de bénévoles — j'apporte polyvalence, réactivité et rigueur dans chaque mission événementielle.</p>
+      <p>Depuis, je m'efforce de donner vie à mes idées et projets avec ma propre signature : <strong>VALTIKX</strong>.</p>
+      <div class="contact-chips">
+        <a class="chip" href="mailto:valentin.auger.consulting@gmail.com">valentin.auger.consulting@gmail.com</a>
+        <a class="chip" href="tel:+33634421230">+33 6 34 42 12 30</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LINEUP / EXPÉRIENCES PROFESSIONNELLES -->
+<section id="lineup">
+  <div class="lineup-header reveal">
+    <div class="section-eyebrow">Expériences Professionnelles</div>
+    <h2 class="section-title">Le<br>Line-Up</h2>
+  </div>
+
+  <div class="marquee-wrap">
+    <div class="marquee-track">
+      <span class="marquee-item">We Love Green</span>
+      <span class="marquee-item">Gärten Project</span>
+      <span class="marquee-item">Dox'Art</span>
+      <span class="marquee-item">Central Chapelle</span>
+      <span class="marquee-item">Marvellous Island</span>
+      <span class="marquee-item">Nuits Sonores</span>
+      <span class="marquee-item">Fever</span>
+      <span class="marquee-item">La Bringue</span>
+      <span class="marquee-item">Printemps de Bourges</span>
+      <span class="marquee-item">Impact Techno</span>
+      <span class="marquee-item">BlackGuards</span>
+      <span class="marquee-item">Tomorrowland Winter</span>
+      <span class="marquee-item">Madame Loyal</span>
+      <span class="marquee-item">Leadher Event</span>
+      <span class="marquee-item">Luminiscence</span>
+      <span class="marquee-item">QAPA</span>
+      <span class="marquee-item">Les Oursons de Manon</span>
+      <span class="marquee-item">Super! Mon Amour</span>
+      <span class="marquee-item">Hectoflo</span>
+      <span class="marquee-item">Eat Is Family</span>
+      <span class="marquee-item">Topivo</span>
+      <span class="marquee-item">Agence Episode</span>
+      <span class="marquee-item">We Love Green</span>
+      <span class="marquee-item">Gärten Project</span>
+      <span class="marquee-item">Dox'Art</span>
+      <span class="marquee-item">Central Chapelle</span>
+      <span class="marquee-item">Marvellous Island</span>
+      <span class="marquee-item">Nuits Sonores</span>
+      <span class="marquee-item">Fever</span>
+      <span class="marquee-item">La Bringue</span>
+      <span class="marquee-item">Printemps de Bourges</span>
+      <span class="marquee-item">Impact Techno</span>
+      <span class="marquee-item">BlackGuards</span>
+      <span class="marquee-item">Tomorrowland Winter</span>
+      <span class="marquee-item">Madame Loyal</span>
+      <span class="marquee-item">Leadher Event</span>
+      <span class="marquee-item">Luminiscence</span>
+      <span class="marquee-item">QAPA</span>
+      <span class="marquee-item">Les Oursons de Manon</span>
+      <span class="marquee-item">Super! Mon Amour</span>
+      <span class="marquee-item">Hectoflo</span>
+      <span class="marquee-item">Eat Is Family</span>
+      <span class="marquee-item">Topivo</span>
+      <span class="marquee-item">Agence Episode</span>
+    </div>
+  </div>
+
+  <div class="lineup-grid">
+
+    <div class="year-group open" id="year-2026">
+      <div class="year-head" onclick="toggleYear('year-2026')">
+        <div class="year-head-left">
+          <div class="year-num">2026</div>
+          <div class="year-count">16 expériences</div>
+        </div>
+        <div class="year-chevron">+</div>
+      </div>
+      <div class="year-body">
+        <div class="year-body-inner">
+
+          <div class="lineup-act reveal">
+            <div class="act-date">06 / 2026</div>
+            <div>
+              <div class="act-name">We Love Green</div>
+              <div class="act-role">Co-régie Entrée Supagreen (VIP)</div>
+              <p class="act-details">Management & formation des bénévoles aux scans (20/shift × 3 shifts/soir) · Pose des bracelets VIP · Gestion des litiges · Coordination Weezevent & AXS · Interface PCO et sécurité.</p>
+            </div>
+            <div class="act-tag">VIP · Régie</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">06 / 2026</div>
+            <div>
+              <div class="act-name">Central Chapelle</div>
+              <div class="act-role">Barman — Adidas Arena</div>
+              <p class="act-details">Encaissement des commandes · Mixologie · Gestion des stocks · Montage, démontage et nettoyage des espaces · Coordination équipes Central Chapelle.</p>
+            </div>
+            <div class="act-tag">Bar · F&B</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">06 / 2026</div>
+            <div>
+              <div class="act-name">Gärten Project</div>
+              <div class="act-role">Barman (Runner) — Chantilly</div>
+              <p class="act-details">Gestion des stocks · Coordination des équipes entre préparateurs et magasinier · Application des procédures du régisseur site · Réassort des consommables · Préparation des palettes pour démontage · Gestion des aléas (situation canicule).</p>
+            </div>
+            <div class="act-tag">Bar · Chantilly</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">06 / 2026</div>
+            <div>
+              <div class="act-name">Dox'Art</div>
+              <div class="act-role">Field Operator Manager Shotgun — Hambye</div>
+              <p class="act-details">Responsable de l'entrée Grand Public (10 000 festivaliers / 4 jours) · Contrôle & scan des billets/invitations · Gestion du stock de consommables (bracelets) · Gestion des litiges · Formation & gestion des shifts bénévoles · Coordination production & sécurité · Application Shotgun.</p>
+            </div>
+            <div class="act-tag">Billetterie · Hambye</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">05 / 2026</div>
+            <div>
+              <div class="act-name">Fever</div>
+              <div class="act-role">Régisseur Bar</div>
+              <p class="act-details">Préparation de 5 cocktails et mocktails en Batch · Coordination des équipes serveurs pour ~2000 cocktails servis (5 services) · Coordination régisseuse générale & livreurs.</p>
+            </div>
+            <div class="act-tag">Régie · Batch</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">05 / 2026</div>
+            <div>
+              <div class="act-name">Marvellous Island</div>
+              <div class="act-role">Assistant Billetterie — Shotgun</div>
+              <p class="act-details">Formation du staff pour l'encaissement & process de facturation (12 caisses) · Gestion des litiges · Renfort équipes Scan · Coordination Weezevent.</p>
+            </div>
+            <div class="act-tag">Billetterie</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">05 / 2026</div>
+            <div>
+              <div class="act-name">Nuits Sonores</div>
+              <div class="act-role">Assistant Billetterie — Lyon</div>
+              <p class="act-details">Coordination des bénévoles (3 shifts) · Gestion des litiges · Renfort équipes Scan · Coordination Weezevent.</p>
+            </div>
+            <div class="act-tag">Billetterie · Lyon</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">05 / 2026</div>
+            <div>
+              <div class="act-name">La Bringue</div>
+              <div class="act-role">Back Bar / Front Bar — Nantes</div>
+              <p class="act-details">Montage Bar · Back Bar · Barman Front · Démontage.</p>
+            </div>
+            <div class="act-tag">Bar · Nantes</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">04 / 2026</div>
+            <div>
+              <div class="act-name">Printemps de Bourges</div>
+              <div class="act-role">Front Bar / Magasinier / Asst. Resp. Bar</div>
+              <p class="act-details">Magasinier · Runner · Assistant responsable bar · Front Bar · Refill.</p>
+            </div>
+            <div class="act-tag">Bar · Bourges</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">04 / 2026</div>
+            <div>
+              <div class="act-name">Impact Techno</div>
+              <div class="act-role">Magasinier / Assistant Responsable Bar — Tours</div>
+              <p class="act-details">Magasinier · Runner · Assistant responsable bar.</p>
+            </div>
+            <div class="act-tag">Bar · Tours</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">04 / 2026</div>
+            <div>
+              <div class="act-name">BlackGuards</div>
+              <div class="act-role">Back Bar / Magasinier / Front Bar — Mulhouse</div>
+              <p class="act-details">Dystopia · Back Bar · Magasinier · Front Bar.</p>
+            </div>
+            <div class="act-tag">Bar · Mulhouse</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">03 / 2026</div>
+            <div>
+              <div class="act-name">Tomorrowland Winter</div>
+              <div class="act-role">Responsable des stocks / Barman — Alpe d'Huez</div>
+              <p class="act-details">Mainstage : responsable des stocks, Barman front, Refill · Moosebar : Barman, Plongeur.</p>
+            </div>
+            <div class="act-tag">Bar · Stocks</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">03 / 2026</div>
+            <div>
+              <div class="act-name">Madame Loyal</div>
+              <div class="act-role">Responsable Friends & Family</div>
+              <p class="act-details">Gestion des flux invités/VIP · Contrôle & scan des billets/invitations · Gestion du stock de consommables · Résolution des problèmes logiciels de scan · Coordination production & sécurité · Application Wilout.</p>
+            </div>
+            <div class="act-tag">VIP · Friends & Family</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">03 / 2026</div>
+            <div>
+              <div class="act-name">Leadher Event</div>
+              <div class="act-role">Coordinateur de bénévoles — Juste Debout</div>
+              <p class="act-details">Coordination bénévoles sur 2 jours · +6000 festivaliers · Responsable F&B, Billetterie, Consigne, Merchandising · Briefing et coordination repas par shift.</p>
+            </div>
+            <div class="act-tag">Coordination</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">01–05 / 2026</div>
+            <div>
+              <div class="act-name">Luminiscence</div>
+              <div class="act-role">Hôte d'accueil événementiel — Église St Eustache</div>
+              <p class="act-details">Accueil & orientation public · Vérification billets & gestion flux · Montage / démontage du site · 6 mois de mission continue.</p>
+            </div>
+            <div class="act-tag">Accueil · 6 mois</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">01 / 2026 →</div>
+            <div>
+              <div class="act-name">QAPA</div>
+              <div class="act-role">Equipier de service et production — Stade Jean Bouin</div>
+              <p class="act-details">Orientation des spectateurs · Contrôle billets & gestion des flux · Filtrage zone tendue (domicile/extérieur) · Actions de communication (handflag) · Collaboration sécurité & médical.</p>
+            </div>
+            <div class="act-tag">Interim · Stade</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="year-group" id="year-2025">
+      <div class="year-head" onclick="toggleYear('year-2025')">
+        <div class="year-head-left">
+          <div class="year-num">2025</div>
+          <div class="year-count">6 expériences</div>
+        </div>
+        <div class="year-chevron">+</div>
+      </div>
+      <div class="year-body">
+        <div class="year-body-inner">
+
+          <div class="lineup-act reveal">
+            <div class="act-date">11 / 2025 →</div>
+            <div>
+              <div class="act-name">Les Oursons de Manon</div>
+              <div class="act-role">Responsable / Manager événementiel</div>
+              <p class="act-details">Salon du Chocolat · Montage/démontage du stand · Gestion vente & marketing · Management d'une équipe de +10 équipiers · Mise en place d'un système de drive.</p>
+            </div>
+            <div class="act-tag">Management ★</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">11 / 2025 →</div>
+            <div>
+              <div class="act-name">Super! Mon Amour</div>
+              <div class="act-role">Assistant billetterie / Vestiaire & Consigne</div>
+              <p class="act-details">Gestion des flux entrants/sortants de l'entrée principale · Contrôle & scan des billets/invitations · Résolution des problèmes logiciels de scan · Coordination production & sécurité · Shotgun, Fever, Dice, Seetickets, Weezevent.</p>
+            </div>
+            <div class="act-tag">Billetterie</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">11 / 2025</div>
+            <div>
+              <div class="act-name">Hectoflo</div>
+              <div class="act-role">Barman — Grand Palais</div>
+              <p class="act-details">Encaissement clients zone F&B · Prise de commandes · Runner · Gestion logistique des stocks · Commandes alcools forts & softs.</p>
+            </div>
+            <div class="act-tag">Bar · Grand Palais</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">11 / 2025 →</div>
+            <div>
+              <div class="act-name">Eat Is Family</div>
+              <div class="act-role">Equipier de service et production — Adidas Arena</div>
+              <p class="act-details">Restauration lors d'événements sportifs, concerts et spectacles · Accueil & service clients (snacking, boissons) · Réapprovisionnement · Normes d'hygiène & sécurité.</p>
+            </div>
+            <div class="act-tag">Interim · F&B</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">11 / 2025 →</div>
+            <div>
+              <div class="act-name">Topivo</div>
+              <div class="act-role">Equipier de service et production — Parc des Princes</div>
+              <p class="act-details">Restauration lors d'événements sportifs, concerts et spectacles · Accueil & service clients (snacking, boissons) · Réapprovisionnement · Normes d'hygiène & sécurité.</p>
+            </div>
+            <div class="act-tag">Interim · F&B</div>
+          </div>
+
+          <div class="lineup-act reveal">
+            <div class="act-date">10 / 2025 →</div>
+            <div>
+              <div class="act-name">Agence Episode</div>
+              <div class="act-role">Resp. Friends & Family / Accréditation Artiste</div>
+              <p class="act-details">Welcome Back Devil, Sonora, Madame Loyal · Gestion des flux VIP & invités · Scan billets/invitations · Coordination production & sécurité · Shotgun, Dice, Wilout.</p>
+            </div>
+            <div class="act-tag">VIP · Artistes</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="bilan-timeline reveal">
+      <div class="bilan-timeline-inner">
+        <!-- BILAN GAUCHE -->
+        <div class="bilan-left">
+          <h3 class="bilan-timeline-title">Bilan</h3>
+        </div>
+        <!-- FRISE DROITE -->
+        <div class="bilan-right">
+          <div class="bilan-timeline-scroll">
+            <div class="bilan-timeline-track">
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">10/2025<br><strong>Agence Episode</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">11/2025<br><strong>Les Oursons de Manon</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">11/2025<br><strong>Super! Mon Amour</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">11/2025<br><strong>Hectoflo</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">11/2025 →<br><strong>Eat Is Family</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">11/2025 →<br><strong>Topivo</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot" style="background:var(--amber-deep)"></span><span class="bilan-timeline-label">01/2026 →<br><strong>QAPA</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot" style="background:var(--amber-deep)"></span><span class="bilan-timeline-label">01–05/2026<br><strong>Luminiscence</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">03/2026<br><strong>Madame Loyal</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">03/2026<br><strong>Tomorrowland Winter</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">03/2026<br><strong>Leadher Event</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">04/2026<br><strong>BlackGuards</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">04/2026<br><strong>Impact Techno</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">04/2026<br><strong>Printemps de Bourges</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">05/2026<br><strong>La Bringue</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">05/2026<br><strong>Nuits Sonores</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">05/2026<br><strong>Marvellous Island</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">05/2026<br><strong>Fever</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">06/2026<br><strong>Central Chapelle</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">06/2026<br><strong>Gärten Project</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot"></span><span class="bilan-timeline-label">06/2026<br><strong>Dox'Art</strong></span></div>
+              <div class="bilan-timeline-pt"><span class="bilan-timeline-dot" style="background:var(--mint-deep)"></span><span class="bilan-timeline-label">06/2026<br><strong>We Love Green</strong></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BÉNÉVOLATS -->
+<section id="benevols">
+  <div class="benevols-inner">
+    <div class="reveal">
+      <div class="section-eyebrow">Engagement & Bénévolats</div>
+      <h2 class="section-title">La<br>Scène</h2>
+
+    </div>
+  </div>
+
+  <div class="benev-fullbleed">
+    <div class="benev-columns">
+
+      <!-- SPORT -->
+      <div class="benev-col sport reveal">
+        <div class="benev-col-header">
+          <h3 class="benev-col-title">Sport</h3>
+        </div>
+        <div class="benev-carousel-wrap">
+          <button class="benev-car-btn benev-prev" aria-label="Précédent">❮</button>
+          <div class="benev-track-clip">
+          <div class="benev-track" id="track-sport">
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">JOP Paris 2024</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Sport</div>
+                  <div class="benev-card-back-name">JOP Paris 2024</div>
+                  <p class="benev-card-role">Marathon · Logistique</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Coupe du Monde Rugby</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Sport</div>
+                  <div class="benev-card-back-name">Coupe du Monde Rugby</div>
+                  <p class="benev-card-role">Figurant · Cérémonie Ouverture</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <button class="benev-car-btn benev-next" aria-label="Suivant">❯</button>
+        </div>
+      </div>
+
+      <!-- MUSIQUE -->
+      <div class="benev-col musique reveal">
+        <div class="benev-col-header">
+          <h3 class="benev-col-title">Musique</h3>
+        </div>
+        <div class="benev-carousel-wrap">
+          <button class="benev-car-btn benev-prev" aria-label="Précédent">❮</button>
+          <div class="benev-track-clip">
+          <div class="benev-track" id="track-musique">
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Solidays 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Solidays 2025</div>
+                  <p class="benev-card-role">Desk Loges Partenaires</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">We Love Green 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">We Love Green 2025</div>
+                  <p class="benev-card-role">Runner Artiste · Photo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Elektrik Park 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Elektrik Park 2025</div>
+                  <p class="benev-card-role">Village Artistes</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Fluctuations 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Fluctuations 2025</div>
+                  <p class="benev-card-role">Scan · Médiation carbone</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Dream Nation 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Dream Nation 2025</div>
+                  <p class="benev-card-role">Scan · Orientation</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Beauregard 2024–25</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Beauregard 2024–25</div>
+                  <p class="benev-card-role">Village Artistes</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">ibis RockCorps 24–25</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">ibis RockCorps 24–25</div>
+                  <p class="benev-card-role">Peinture · Clean Walk</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">Tomorrowland Winter</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Musique</div>
+                  <div class="benev-card-back-name">Tomorrowland Winter</div>
+                  <p class="benev-card-role">Bar Crew</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <button class="benev-car-btn benev-next" aria-label="Suivant">❯</button>
+        </div>
+      </div>
+
+      <!-- SALONS ET FOIRES -->
+      <div class="benev-col salons reveal">
+        <div class="benev-col-header">
+          <h3 class="benev-col-title">Salons & Foires</h3>
+        </div>
+        <div class="benev-carousel-wrap">
+          <button class="benev-car-btn benev-prev" aria-label="Précédent">❮</button>
+          <div class="benev-track-clip">
+          <div class="benev-track" id="track-salons">
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">ChangeNow 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Salons & Foires</div>
+                  <div class="benev-card-back-name">ChangeNow 2025</div>
+                  <p class="benev-card-role">Asst. Com' · Runner Photo</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="benev-flip-card">
+              <div class="benev-flip-inner">
+                <div class="benev-card-front">
+                  <div>
+                    <div class="benev-card-name">VivaTech 2025</div>
+                    <div class="benev-card-hint">Voir la mission ✦</div>
+                  </div>
+                </div>
+                <div class="benev-card-back">
+                  <div class="benev-card-tag">Salons & Foires</div>
+                  <div class="benev-card-back-name">VivaTech 2025</div>
+                  <p class="benev-card-role">Gestion flux · Conférences</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+          <button class="benev-car-btn benev-next" aria-label="Suivant">❯</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED HIGHLIGHTS -->
+<section id="featured">
+  <div class="featured-header reveal">
+    <div class="section-eyebrow">Moments forts</div>
+    <h2 class="section-title">En<br>Scène</h2>
+  </div>
+
+  <div class="feat-stage">
+    <div class="feat-track" id="feat-track">
+
+      <div class="feat-slide feat-slide--mint" data-group="ticket">
+        <div class="feat-slide-bg">
+          <div class="feat-slide-photo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+          <div class="feat-slide-stripe"></div>
+          <div class="feat-slide-body">
+            <div class="feat-slide-tag">Billetterie & Accueil</div>
+            <div class="feat-slide-title">We Love Green<br>Marvellous Island<br>Nuits Sonores</div>
+            <p class="feat-slide-desc">Régie entrée VIP · Gestion des litiges · Coordination Weezevent & AXS · Formation bénévoles</p>
+            <button class="feat-slide-cta" onclick="openFeatModal('ticket')">Voir les photos ◆</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-slide feat-slide--amber" data-group="bar">
+        <div class="feat-slide-bg">
+          <div class="feat-slide-photo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+          <div class="feat-slide-stripe"></div>
+          <div class="feat-slide-body">
+            <div class="feat-slide-tag">Bar & F&B</div>
+            <div class="feat-slide-title">Fever<br>Tomorrowland Winter<br>Central Chapelle</div>
+            <p class="feat-slide-desc">Régisseur bar · Batch cocktails 2000+ · Front/back bar · Gestion des stocks</p>
+            <button class="feat-slide-cta" onclick="openFeatModal('bar')">Voir les photos ◆</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="feat-slide feat-slide--blush" data-group="jop">
+        <div class="feat-slide-bg">
+          <div class="feat-slide-photo-mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg></div>
+          <div class="feat-slide-stripe"></div>
+          <div class="feat-slide-body">
+            <div class="feat-slide-tag">Jeux Olympiques</div>
+            <div class="feat-slide-title">JOP Paris<br>2024</div>
+            <p class="feat-slide-desc">Accréditation Marathon · Logistique / Sécurité · Gestion flux spectateurs · Cérémonie d'ouverture</p>
+            <button class="feat-slide-cta" onclick="openFeatModal('jop')">Voir les photos ◆</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="feat-nav">
+      <button class="feat-nav-btn" id="feat-prev" aria-label="Précédent">❮</button>
+      <div class="feat-dots" id="feat-dots">
+        <span class="feat-dot active"></span>
+        <span class="feat-dot"></span>
+        <span class="feat-dot"></span>
+      </div>
+      <button class="feat-nav-btn" id="feat-next" aria-label="Suivant">❯</button>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED PHOTO MODAL -->
+<div class="modal-overlay" id="feat-modal" onclick="if(event.target===this) closeFeatModal()">
+  <div class="modal-box">
+    <div class="modal-close" onclick="closeFeatModal()">&times;</div>
+    <div class="modal-carousel">
+      <div class="modal-carousel-track" id="modal-track">
+        <div class="modal-slide card-bg-mint" data-group="ticket"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 1</span></div></div>
+        <div class="modal-slide card-bg-mint" data-group="ticket" style="filter:hue-rotate(15deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 2</span></div></div>
+        <div class="modal-slide card-bg-mint" data-group="ticket" style="filter:hue-rotate(-15deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 3</span></div></div>
+        <div class="modal-slide card-bg-amber" data-group="bar"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 1</span></div></div>
+        <div class="modal-slide card-bg-amber" data-group="bar" style="filter:hue-rotate(20deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 2</span></div></div>
+        <div class="modal-slide card-bg-amber" data-group="bar" style="filter:hue-rotate(-20deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 3</span></div></div>
+        <div class="modal-slide card-bg-blush" data-group="jop"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 1</span></div></div>
+        <div class="modal-slide card-bg-blush" data-group="jop" style="filter:hue-rotate(20deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 2</span></div></div>
+        <div class="modal-slide card-bg-blush" data-group="jop" style="filter:hue-rotate(-20deg)"><div class="modal-slide-placeholder"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21,15 16,10 5,21"/></svg><span>Photo 3</span></div></div>
+      </div>
+      <div class="modal-nav-btn prev" onclick="modalNav(-1)">&#8249;</div>
+      <div class="modal-nav-btn next" onclick="modalNav(1)">&#8250;</div>
+      <div class="modal-dots" id="modal-dots"></div>
+    </div>
+    <div class="modal-body" id="modal-body">
+      <div class="act-name">Billetterie & Accueil</div>
+      <div class="act-role">We Love Green · Marvellous Island · Nuits Sonores</div>
+      <p class="act-details">Régie entrée VIP, gestion des litiges, coordination Weezevent & AXS, formation bénévoles.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="skills-bg"></div>
+  <div class="skills-content">
+    <div class="skills-header reveal">
+      <div class="section-eyebrow">Expertises & Outils</div>
+      <h2 class="section-title">Mon<br>Rider</h2>
+    </div>
+
+    <div class="skills-radar-wrap reveal" id="skills-radar-wrap">
+      <svg class="skills-radar-svg" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+        <polygon class="radar-grid-line" points="220,70 349.9,145 349.9,295 220,370 90.1,295 90.1,145"/>
+        <polygon class="radar-grid-line" points="220,121 305.7,170.5 305.7,269.5 220,319 134.3,269.5 134.3,170.5"/>
+        <polygon class="radar-grid-line" points="220,170.5 262.9,195.25 262.9,244.75 220,269.5 177.1,244.75 177.1,195.25"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="220" y2="70"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="349.9" y2="145"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="349.9" y2="295"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="220" y2="370"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="90.1" y2="295"/>
+        <line class="radar-spoke" x1="220" y1="220" x2="90.1" y2="145"/>
+
+        <polygon class="radar-shape" points="220.0,82.0 304.4,171.3 343.4,291.3 220.0,307.0 105.7,286.0 126.4,166.0"/>
+
+        <circle class="radar-pt" cx="220.0" cy="82.0" r="5.5" fill="#9B84E8" stroke="#FAF7F2" stroke-width="2"/>
+        <circle class="radar-pt" cx="304.4" cy="171.3" r="5.5" fill="#5DC4A8" stroke="#FAF7F2" stroke-width="2"/>
+        <circle class="radar-pt" cx="343.4" cy="291.3" r="5.5" fill="#D4A830" stroke="#FAF7F2" stroke-width="2"/>
+        <circle class="radar-pt" cx="220.0" cy="307.0" r="5.5" fill="#D48888" stroke="#FAF7F2" stroke-width="2"/>
+        <circle class="radar-pt" cx="105.7" cy="286.0" r="5.5" fill="#6B4FBB" stroke="#FAF7F2" stroke-width="2"/>
+        <circle class="radar-pt" cx="126.4" cy="166.0" r="5.5" fill="#4A4A6A" stroke="#FAF7F2" stroke-width="2"/>
+
+        <text class="radar-axis-label" x="220" y="48" text-anchor="middle" font-size="13">Billetterie</text>
+        <text class="radar-axis-label radar-axis-pct" x="220" y="62" text-anchor="middle" font-size="14" fill="#9B84E8">92%</text>
+
+        <text class="radar-axis-label" x="369" y="130" text-anchor="start" font-size="13">Bar & F&amp;B</text>
+        <text class="radar-axis-label radar-axis-pct" x="369" y="146" text-anchor="start" font-size="14" fill="#5DC4A8">65%</text>
+
+        <text class="radar-axis-label" x="369" y="312" text-anchor="start" font-size="13">Coordination</text>
+        <text class="radar-axis-label radar-axis-pct" x="369" y="328" text-anchor="start" font-size="14" fill="#D4A830">95%</text>
+
+        <text class="radar-axis-label" x="220" y="396" text-anchor="middle" font-size="13">Création</text>
+        <text class="radar-axis-label radar-axis-pct" x="220" y="412" text-anchor="middle" font-size="14" fill="#D48888">58%</text>
+
+        <text class="radar-axis-label" x="71" y="312" text-anchor="end" font-size="13">IA & Digital</text>
+        <text class="radar-axis-label radar-axis-pct" x="71" y="328" text-anchor="end" font-size="14" fill="#6B4FBB">88%</text>
+
+        <text class="radar-axis-label" x="71" y="130" text-anchor="end" font-size="13">Organisation</text>
+        <text class="radar-axis-label radar-axis-pct" x="71" y="146" text-anchor="end" font-size="14" fill="#4A4A6A">72%</text>
+      </svg>
+    </div>
+  </div>
+</section>
+  </div>
+</section>
+
+<!-- RSE -->
+<section id="rse">
+  <div class="rse-header reveal">
+    <div class="section-eyebrow">Rapport RSE 2025</div>
+    <h2 class="section-title">Chaque mission,<br>pensée vert</h2>
+  </div>
+
+  <div class="rse-banner reveal">
+    <div class="rse-banner-text">
+      <div class="rse-card-title">Démarche continue</div>
+      <div class="rse-card-sub" style="margin-bottom:16px">Actions concrètes</div>
+      <div class="rse-timeline">
+        <div class="rse-tl-item">
+          <div class="rse-tl-icon">🚇</div>
+          <div><div class="rse-tl-label">Mesure systématique</div><div class="rse-tl-desc">Chaque trajet tracé via l'outil ADEME. Le métro représente 41% du CO₂ transport sur l'année.</div></div>
+        </div>
+        <div class="rse-tl-item">
+          <div class="rse-tl-icon">🥦</div>
+          <div><div class="rse-tl-label">Alimentation documentée</div><div class="rse-tl-desc">Préférence végétarienne sur 75% des repas en mission, documentée sur toute la saison.</div></div>
+        </div>
+        <div class="rse-tl-item">
+          <div class="rse-tl-icon">🌱</div>
+          <div><div class="rse-tl-label">Sensibilisation terrain</div><div class="rse-tl-desc">Bénévole bilan carbone au Festival Beauregard 2024 avec Green Deal Circular Festivals (GDCF).</div></div>
+        </div>
+        <div class="rse-tl-item">
+          <div class="rse-tl-icon">♻️</div>
+          <div><div class="rse-tl-label">Clean Walk &amp; travaux</div><div class="rse-tl-desc">Ramassage de déchets et peinture urbaine — Ibis x RockCorps 2024-2025.</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="rse-col-kpi">
+      <div class="rse-kpi-card">
+        <div class="rse-kpi-icon">🚇</div>
+        <div class="rse-kpi-n green">98%</div>
+        <div class="rse-kpi-l">des transports<br>en commun</div>
+      </div>
+      <div class="rse-kpi-card blush-b">
+        <div class="rse-kpi-icon">🥦</div>
+        <div class="rse-kpi-n blush">75%</div>
+        <div class="rse-kpi-l">de repas<br>végétariens</div>
+      </div>
+    </div>
+    <div class="rse-col-kpi">
+      <div class="rse-kpi-card amber-b">
+        <div class="rse-kpi-icon">🚌</div>
+        <div class="rse-kpi-n amber">1,80<span style="font-size:15px"> kg</span></div>
+        <div class="rse-kpi-l">CO₂ moyen / mission<br>(transport)</div>
+      </div>
+      <div class="rse-kpi-card">
+        <div class="rse-kpi-icon">🍽️</div>
+        <div class="rse-kpi-n green">3,25<span style="font-size:15px"> kg</span></div>
+        <div class="rse-kpi-l">CO₂ moyen / mission<br>(alimentation)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rse-grid-bottom">
+    <div class="rse-card reveal" style="text-align:center">
+      <div class="rse-card-title">Répartition CO₂</div>
+      <div class="rse-card-sub">Empreinte par poste</div>
+      <div class="rse-donut-wrap">
+        <svg viewBox="0 0 160 160" width="150" height="150" style="transform:rotate(-90deg)">
+          <circle cx="80" cy="80" r="58" fill="none" stroke="rgba(26,26,46,0.08)" stroke-width="22"/>
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#5DC4A8" stroke-width="22" stroke-dasharray="234 131" stroke-dashoffset="0"/>
+          <circle cx="80" cy="80" r="58" fill="none" stroke="#D4A830" stroke-width="22" stroke-dasharray="131 234" stroke-dashoffset="-234"/>
+        </svg>
+        <div class="rse-donut-center"><div class="rse-donut-n">5,05</div><div class="rse-donut-l">kg CO₂ / event.</div></div>
+      </div>
+      <div class="rse-legend-row">
+        <div class="rse-leg"><div class="rse-leg-dot" style="background:#5DC4A8"></div><strong style="color:#5DC4A8">64%</strong>&nbsp;Food — 3,25 kg</div>
+        <div class="rse-leg"><div class="rse-leg-dot" style="background:#D4A830"></div><strong style="color:#D4A830">36%</strong>&nbsp;Transport — 1,80 kg</div>
+      </div>
+      <div class="rse-note">Soit <strong style="color:var(--mint-deep)">4x moins</strong> qu'un repas carné moyen.</div>
+    </div>
+
+    <div class="rse-card reveal" style="text-align:center">
+      <div class="rse-card-title">Impact évité</div>
+      <div class="rse-card-sub">Économies estimées</div>
+      <p style="font-size:12.5px;color:var(--text-mid);line-height:1.65;margin-bottom:18px">En privilégiant <strong style="color:var(--mint-deep)">98% de transports en commun</strong> et <strong style="color:var(--mint-deep)">75% d'alimentation végétarienne</strong>, ces choix permettent d'éviter des émissions significatives sur l'ensemble de la saison événementielle.</p>
+      <div class="rse-savings" style="justify-content:center">
+        <div class="rse-saving"><div class="rse-saving-n">-82%</div><div class="rse-saving-l">vs voiture<br>solo</div></div>
+        <div class="rse-saving"><div class="rse-saving-n">-60%</div><div class="rse-saving-l">vs repas<br>carné</div></div>
+        <div class="rse-saving"><div class="rse-saving-n">20+</div><div class="rse-saving-l">événements<br>mesurés</div></div>
+        <div class="rse-saving"><div class="rse-saving-n">8+</div><div class="rse-saving-l">villes<br>couvertes</div></div>
+      </div>
+    </div>
+
+    <div class="rse-card reveal">
+      <div class="rse-card-title">Top émissions</div>
+      <div class="rse-card-sub">CO₂ par événement (kg)</div>
+      <div class="rse-bars" id="rse-bars"></div>
+    </div>
+  </div>
+
+  
+</section>
+
+
+<!-- RÉSEAU / NETWORK MAP -->
+<section id="network">
+  <div class="network-header reveal">
+    <div class="section-eyebrow" style="color:var(--amber)">Cartographie · Bilan 2024–2026</div>
+    <h2 class="section-title network-title">L'<span class="network-title-accent">Écosystème</span><br>VALTIKX</h2>
+    <p class="network-intro">Un réseau de <strong>30+ organisations</strong> — festivals, agences, institutions et événements — interconnectés autour d'une expertise terrain unique.</p>
+  </div>
+
+  <!-- Legend -->
+  <div class="network-legend reveal">
+    <div class="network-leg-item"><span class="network-leg-dot" style="background:#9B84E8"></span>Expériences professionnelles</div>
+    <div class="network-leg-item"><span class="network-leg-dot" style="background:#D48888"></span>Bénévolats</div>
+  </div>
+
+  <!-- Canvas network -->
+  <div class="network-canvas-wrap">
+    <canvas id="network-canvas"></canvas>
+    <div class="network-tooltip" id="network-tooltip"></div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="network-stats reveal">
+    <div class="network-stat"><div class="network-stat-n">30+</div><div class="network-stat-l">Organisations</div></div>
+    <div class="network-stat"><div class="network-stat-n">8</div><div class="network-stat-l">Villes</div></div>
+    <div class="network-stat"><div class="network-stat-n">3</div><div class="network-stat-l">Pays</div></div>
+    <div class="network-stat"><div class="network-stat-n">25+</div><div class="network-stat-l">Missions réalisées</div></div>
+    <div class="network-stat"><div class="network-stat-n">14+</div><div class="network-stat-l">Mois de terrain</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<!-- AVIS — CAROUSEL DECK -->
+<section id="avis">
+  <div class="avis-inner">
+    <div class="avis-header reveal">
+      <div class="section-eyebrow" style="color:var(--mint)">Témoignages</div>
+      <h2 class="section-title">Les <span style="-webkit-text-stroke:2px var(--mint);color:transparent">Avis</span></h2>
+    </div>
+
+    <!-- Full-width carousel -->
+    <div class="avis-carousel-outer reveal">
+      <button class="avis-car-prev" id="avis-prev" aria-label="Précédent">❮</button>
+      <div class="avis-carousel-track-clip">
+        <div class="avis-carousel-track" id="avis-track">
+
+          <!-- Card 1 — We Love Green -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <!-- Front: photo + logo -->
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#2D8A5E;">WLG</div>
+                <div class="avis-dcard-fest">We Love Green</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#1a4a2e 0%,#2D8A5E 60%,#4BC47A 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">🌿</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <!-- Back: review -->
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#1a4a2e,#2D8A5E);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Valentin est un collaborateur fiable, réactif et impliqué. Sa gestion des flux VIP et sa coordination des bénévoles ont été exemplaires sur toute la durée du festival.</p>
+                <div class="avis-dcard-author"><strong>Direction Billetterie</strong>We Love Green · 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 — Tomorrowland Winter -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#8B3FCC;">TWL</div>
+                <div class="avis-dcard-fest">Tomorrowland Winter</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#1a0a3e 0%,#5A1E99 60%,#A04AE8 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">❄️</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#1a0a3e,#5A1E99);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Professionnel, autonome et toujours souriant même sous pression. Il a su gérer les stocks et le bar avec une fluidité remarquable dans un environnement exigeant.</p>
+                <div class="avis-dcard-author"><strong>Responsable F&B</strong>Tomorrowland Winter · 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 — Fever -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#CC1C3A;">FVR</div>
+                <div class="avis-dcard-fest">Fever</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#3a0a18 0%,#CC1C3A 60%,#E85A70 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">🍹</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#3a0a18,#CC1C3A);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Valentin a géré la régie bar avec une efficacité impressionnante — 2000+ cocktails servis sur 5 services, sans accroc. Un régisseur en qui on peut avoir pleinement confiance.</p>
+                <div class="avis-dcard-author"><strong>Régisseuse Générale</strong>Fever · 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 — Leadher Event -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#C87A00;">LED</div>
+                <div class="avis-dcard-fest">Leadher Event</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#3a2000 0%,#C87A00 60%,#F5A020 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">🎪</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#3a2000,#C87A00);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Sur Juste Debout, Valentin a coordonné nos bénévoles avec un calme et un professionnalisme exemplaires. Sa capacité à gérer plusieurs postes simultanément est un vrai atout.</p>
+                <div class="avis-dcard-author"><strong>Coordinatrice Événement</strong>Leadher Event · Juste Debout</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5 — JOP Paris 2024 -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#003087;">JOP</div>
+                <div class="avis-dcard-fest">JOP Paris 2024</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#000a2e 0%,#003087 60%,#0050CC 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">🏅</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#000a2e,#003087);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Bénévole rigoureux, disponible et motivé. Valentin a assuré la logistique du Marathon avec sérieux, contribuant à la réussite de cet événement historique pour Paris.</p>
+                <div class="avis-dcard-author"><strong>Chef de Secteur</strong>Délégation JOP Paris 2024</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6 — Nuits Sonores -->
+          <div class="avis-slide">
+            <div class="avis-double-card">
+              <div class="avis-dcard-front">
+                <div class="avis-dcard-badge" style="background:#1A1A2E;">NSO</div>
+                <div class="avis-dcard-fest">Nuits Sonores</div>
+                <div class="avis-dcard-visual" style="background:linear-gradient(160deg,#0a0a18 0%,#1A1A2E 60%,#3A3A5E 100%);">
+                  <svg viewBox="0 0 80 80" width="64" height="64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.08)"/><text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" font-size="34">🎧</text></svg>
+                </div>
+                <div class="avis-dcard-tap">Retourner ✦</div>
+              </div>
+              <div class="avis-dcard-back" style="background:linear-gradient(160deg,#0a0a18,#3A3A5E);">
+                <div class="avis-dcard-quote-mark">"</div>
+                <p class="avis-dcard-quote">Une belle surprise. Valentin s'est intégré instantanément à notre équipe bénévole à Lyon, prenant en main la gestion des shifts avec une maturité professionnelle au-dessus de la moyenne.</p>
+                <div class="avis-dcard-author"><strong>Responsable Billetterie</strong>Nuits Sonores · Lyon 2026</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <button class="avis-car-next" id="avis-next" aria-label="Suivant">❯</button>
+    </div>
+
+    <!-- Dots nav — built dynamically by JS -->
+    <div class="avis-dots-row" id="avis-dots"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-big reveal">
+    <div class="line1">Prêt à</div>
+    <div class="line2">rejoindre</div>
+    <div class="line1">le show ?</div>
+  </div>
+  <div class="contact-links reveal">
+    <a class="contact-link primary" href="mailto:valentin.auger.consulting@gmail.com">valentin.auger.consulting@gmail.com</a>
+    <a class="contact-link" href="tel:+33634421230">+33 6 34 42 12 30</a>
+  </div>
+  <footer-bottom>© 2026 Valentin Auger — VALTIKX · Coordination & Production Événementielle</footer-bottom>
+</section>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, (entry.target.dataset.delay || 0) * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  reveals.forEach((el, i) => {
+    el.dataset.delay = i % 4;
+    observer.observe(el);
+  });
+
+  /* ─── YEAR ACCORDION (LINE-UP) ─── */
+  function toggleYear(id) {
+    const group = document.getElementById(id);
+    group.classList.toggle('open');
+    const btn = group.querySelector('.year-chevron');
+    btn.textContent = group.classList.contains('open') ? '×' : '+';
+  }
+  document.querySelectorAll('.year-group').forEach(g => {
+    g.querySelector('.year-chevron').textContent = g.classList.contains('open') ? '×' : '+';
+  });
+
+  // Auto-close all year groups when #lineup scrolls out of view
+  const lineupSection = document.getElementById('lineup');
+  const lineupVisibilityObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) {
+        document.querySelectorAll('.year-group').forEach(g => {
+          g.classList.remove('open');
+          g.querySelector('.year-chevron').textContent = '+';
+        });
+      }
+    });
+  }, { threshold: 0.05 });
+  if (lineupSection) lineupVisibilityObserver.observe(lineupSection);
+
+  /* ─── SKILL BARS ANIMATION ─── */
+  const skillBlocks = document.querySelectorAll('.skill-block');
+  const skillObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        skillObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  skillBlocks.forEach(b => skillObserver.observe(b));
+
+  /* ─── SKILLS RADAR ANIMATION ─── */
+  const radarWrap = document.getElementById('skills-radar-wrap');
+  if (radarWrap) {
+    new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.3 }).observe(radarWrap);
+  }
+
+  /* ─── RSE BARS ─── */
+  const RSE_DATA = [
+    { name: 'Solidays', val: 33, color: '#5DC4A8' },
+    { name: 'Beauregard', val: 26, color: '#D4A830' },
+    { name: 'Skoll Winter', val: 12, color: '#9B84E8' },
+    { name: 'Vivatech', val: 11, color: '#D48888' },
+    { name: 'We Love Green', val: 10, color: '#5DC4A8' },
+    { name: 'RockCorps', val: 8, color: '#D4A830' }
+  ];
+  const barsEl = document.getElementById('rse-bars');
+  if (barsEl) {
+    RSE_DATA.forEach(d => {
+      const pct = Math.round(d.val / 33 * 100);
+      barsEl.innerHTML += `<div class="rse-bar-row"><div class="rse-bar-name">${d.name}</div><div class="rse-bar-track"><div class="rse-bar-fill" data-pct="${pct}" style="width:0;background:${d.color}"></div></div><div class="rse-bar-val">${d.val} kg</div></div>`;
+    });
+    const rseSect = document.getElementById('rse');
+    if (rseSect) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) document.querySelectorAll('.rse-bar-fill').forEach(b => b.style.width = b.dataset.pct + '%'); });
+      }, { threshold: 0.3 }).observe(rseSect);
+    }
+  }
+
+  /* ─── FEATURED CAROUSEL ─── */
+  (function() {
+    const track = document.getElementById('feat-track');
+    const dots  = document.querySelectorAll('.feat-dot');
+    const prevBtn = document.getElementById('feat-prev');
+    const nextBtn = document.getElementById('feat-next');
+    if (!track) return;
+
+    let current = 0;
+    const total = track.children.length;
+
+    function goTo(idx) {
+      current = (idx + total) % total;
+      track.scrollTo({ left: current * track.clientWidth, behavior: 'smooth' });
+      dots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    dots.forEach((d, i) => d.addEventListener('click', () => goTo(i)));
+
+    // Sync dot on manual swipe
+    track.addEventListener('scroll', () => {
+      const idx = Math.round(track.scrollLeft / track.clientWidth);
+      if (idx !== current) {
+        current = idx;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+    }, { passive: true });
+  })();
+
+  /* ─── BÉNÉVOLATS — CARROUSELS 3 COLONNES ─── */
+  document.querySelectorAll('.benev-carousel-wrap').forEach(wrap => {
+    const track = wrap.querySelector('.benev-track');
+    const prevBtn = wrap.querySelector('.benev-prev');
+    const nextBtn = wrap.querySelector('.benev-next');
+    prevBtn.addEventListener('click', () => track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' }));
+    nextBtn.addEventListener('click', () => track.scrollBy({ left: track.clientWidth, behavior: 'smooth' }));
+  });
+
+  /* ─── FEATURED PHOTO MODAL CAROUSEL ─── */
+  const featData = {
+    ticket: { name: 'Billetterie & Accueil', role: 'We Love Green · Marvellous Island · Nuits Sonores', details: "Régie entrée VIP, gestion des litiges, coordination Weezevent & AXS, formation bénévoles." },
+    bar:    { name: 'Bar & F&B', role: 'Fever · Tomorrowland Winter · Central Chapelle', details: "Régisseur bar, batch cocktails 2000+, front/back bar, gestion des stocks en milieu professionnel." },
+    jop:    { name: 'Jeux Olympiques', role: 'JOP 2024 — Paris · Bénévolat', details: "Accréditation Marathon · Logistique / Sécurité · Gestion flux spectateurs · Cérémonie d'ouverture." }
+  };
+  let modalSlides = [];
+  let modalIndex = 0;
+  let modalGroup = 'ticket';
+
+  function openFeatModal(group) {
+    modalGroup = group;
+    const allSlides = Array.from(document.querySelectorAll('.modal-slide'));
+    modalSlides = allSlides.filter(s => s.dataset.group === group);
+    modalIndex = 0;
+    const track = document.getElementById('modal-track');
+    track.innerHTML = '';
+    modalSlides.forEach(s => track.appendChild(s));
+    renderModalDots();
+    updateModalTrack();
+    const d = featData[group];
+    document.getElementById('modal-body').innerHTML =
+      `<div class="act-name">${d.name}</div><div class="act-role">${d.role}</div><p class="act-details">${d.details}</p>`;
+    document.getElementById('feat-modal').classList.add('open');
+  }
+  function closeFeatModal() {
+    document.getElementById('feat-modal').classList.remove('open');
+  }
+  function renderModalDots() {
+    const dots = document.getElementById('modal-dots');
+    dots.innerHTML = '';
+    modalSlides.forEach((_, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'modal-dot' + (i === modalIndex ? ' active' : '');
+      dot.onclick = (e) => { e.stopPropagation(); modalIndex = i; updateModalTrack(); };
+      dots.appendChild(dot);
+    });
+  }
+  function updateModalTrack() {
+    const track = document.getElementById('modal-track');
+    track.style.transform = `translateX(-${modalIndex * 100}%)`;
+    document.querySelectorAll('.modal-dot').forEach((d, i) => d.classList.toggle('active', i === modalIndex));
+  }
+  function modalNav(dir) {
+    modalIndex = (modalIndex + dir + modalSlides.length) % modalSlides.length;
+    updateModalTrack();
+  }
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('feat-modal').classList.contains('open')) return;
+    if (e.key === 'Escape') closeFeatModal();
+    if (e.key === 'ArrowRight') modalNav(1);
+    if (e.key === 'ArrowLeft') modalNav(-1);
+  });
+
+  /* ─── NETWORK MAP CANVAS ─── */
+  (function() {
+    const canvas  = document.getElementById('network-canvas');
+    const tooltip = document.getElementById('network-tooltip');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    // ── Node data ──────────────────────────────────────────────
+    const CAT = {
+      PRO      : { color: '#9B84E8', size: 34 },
+      BENEVOL  : { color: '#D48888', size: 30 },
+      CENTER   : { color: '#F5A020', size: 60, textColor: '#0B0B10' }
+    };
+
+    const NODES_DEF = [
+      // CENTER
+      { id: 'valtikx',    label: 'VALTIKX',             cat: 'CENTER',   desc: 'Valentin Auger — Centre du réseau', emoji: '⚡' },
+      // EXPÉRIENCES PROFESSIONNELLES
+      { id: 'wlg',        label: 'We Love Green',        cat: 'PRO', desc: 'Co-régie Entrée VIP · 2026', emoji: '🌿' },
+      { id: 'garten',     label: 'Gärten Project',       cat: 'PRO', desc: 'Barman (Runner) · Chantilly 2026', emoji: '🪴' },
+      { id: 'doxart',     label: "Dox'Art",              cat: 'PRO', desc: 'Field Operator Manager Shotgun · Hambye 2026', emoji: '🎟️' },
+      { id: 'tomorrowl',  label: 'Tomorrowland Winter',  cat: 'PRO', desc: 'Resp. Stocks & Barman · 2026', emoji: '❄️' },
+      { id: 'nuits',      label: 'Nuits Sonores',        cat: 'PRO', desc: 'Asst. Billetterie · Lyon 2026', emoji: '🎧' },
+      { id: 'marvellous', label: 'Marvellous Island',    cat: 'PRO', desc: 'Asst. Billetterie · 2026', emoji: '🏝️' },
+      { id: 'bourges',    label: 'Printemps de Bourges', cat: 'PRO', desc: 'Front Bar & Asst. Resp. Bar · 2026', emoji: '🎵' },
+      { id: 'labringue',  label: 'La Bringue',           cat: 'PRO', desc: 'Front Bar · Nantes 2026', emoji: '🎉' },
+      { id: 'fever',      label: 'Fever',                cat: 'PRO', desc: 'Régisseur Bar · 2026', emoji: '🍹' },
+      { id: 'luminisce',  label: 'Luminiscence',         cat: 'PRO', desc: 'Hôte Accueil · Église St Eustache · 6 mois', emoji: '✨' },
+      { id: 'leadher',    label: 'Leadher Event',        cat: 'PRO', desc: 'Coordinateur bénévoles · Juste Debout', emoji: '🎪' },
+      { id: 'episode',    label: 'Agence Episode',       cat: 'PRO', desc: 'Resp. Friends & Family · VIP', emoji: '🎭' },
+      { id: 'chapelle',   label: 'Central Chapelle',     cat: 'PRO', desc: 'Barman · Adidas Arena · 2026', emoji: '🏟️' },
+      { id: 'oursons',    label: 'Les Oursons de Manon', cat: 'PRO', desc: 'Manager · Salon du Chocolat', emoji: '🍫' },
+      { id: 'sonora',     label: 'Sonora',               cat: 'PRO',  desc: 'Accueil VIP · Agence Episode', emoji: '🎶' },
+      { id: 'madame',     label: 'Madame Loyal',         cat: 'PRO',  desc: 'Coordination · Agence Episode', emoji: '🎩' },
+      { id: 'wbd',        label: 'Welcome Back Devil',   cat: 'PRO',  desc: 'Scan & VIP · Agence Episode', emoji: '😈' },
+      { id: 'weezevent',  label: 'Weezevent',            cat: 'PRO',  desc: 'Outil billetterie maîtrisé', emoji: '🎟️' },
+      { id: 'axs',        label: 'AXS / Dice / Shotgun', cat: 'PRO',  desc: 'Plateformes billetterie', emoji: '📱' },
+      // BÉNÉVOLATS
+      { id: 'beauregard', label: 'Beauregard',           cat: 'BENEVOL', desc: 'Village Artistes · 2024–25', emoji: '🎪' },
+      { id: 'elektrik',   label: 'Elektrik Park',        cat: 'BENEVOL', desc: 'Village Artistes · 2025', emoji: '⚡' },
+      { id: 'fluctu',     label: 'Fluctuations',         cat: 'BENEVOL', desc: 'Scan & Médiation carbone · 2025', emoji: '🌊' },
+      { id: 'dreamnation',label: 'Dream Nation',         cat: 'BENEVOL', desc: 'Scan & Orientation · 2025', emoji: '🌙' },
+      { id: 'solidays',   label: 'Solidays',             cat: 'BENEVOL', desc: 'Bénévolat · RSE', emoji: '❤️' },
+      { id: 'changenow',  label: 'ChangeNow',            cat: 'BENEVOL',   desc: 'Asst. Com · Runner Photo · 2025', emoji: '🌍' },
+      { id: 'vivatech',   label: 'VivaTech',             cat: 'BENEVOL',   desc: 'Gestion flux · Conférences · 2025', emoji: '💡' },
+      { id: 'ibis',       label: 'ibis × RockCorps',     cat: 'BENEVOL',   desc: 'Peinture & Clean Walk · 2024–25', emoji: '🎨' },
+      { id: 'skoll',      label: 'Skoll Winter',         cat: 'BENEVOL',   desc: 'RSE · Mission terrain', emoji: '🏔️' },
+      { id: 'jop',        label: 'JOP Paris 2024',       cat: 'BENEVOL',    desc: 'Marathon · Logistique / Sécurité', emoji: '🏅' },
+      { id: 'gdcf',       label: 'Green Deal Festivals', cat: 'BENEVOL',    desc: 'Bénévole bilan carbone · Beauregard', emoji: '♻️' },
+    ];
+
+    // ── Edges (connections to center + some lateral) ─────────
+    const EDGES_DEF = [
+      // All connect to center
+      ...NODES_DEF.filter(n => n.id !== 'valtikx').map(n => ({ source: 'valtikx', target: n.id, strength: 0.05 })),
+      // Grouped lateral connections
+      { source: 'episode', target: 'sonora',    strength: 0.25 },
+      { source: 'episode', target: 'madame',    strength: 0.25 },
+      { source: 'episode', target: 'wbd',       strength: 0.25 },
+      { source: 'wlg',     target: 'weezevent', strength: 0.15 },
+      { source: 'marvellous', target: 'weezevent', strength: 0.15 },
+      { source: 'nuits',   target: 'weezevent', strength: 0.15 },
+      { source: 'beauregard', target: 'gdcf',   strength: 0.2 },
+      { source: 'jop',     target: 'gdcf',      strength: 0.12 },
+      { source: 'wlg',     target: 'axs',       strength: 0.12 },
+      { source: 'ibis',    target: 'rockcorps', strength: 0.2 },
+      { source: 'bourges', target: 'labringue', strength: 0.1 },
+      { source: 'fever',   target: 'chapelle',  strength: 0.1 },
+    ];
+
+    // ── Physics simulation state ───────────────────────────────
+    let W, H, nodes, edges, animId;
+    let hoveredNode = null;
+    let drag = null;
+    let offsetX = 0, offsetY = 0;
+    let isVisible = false;
+
+    function init() {
+      W = canvas.parentElement.clientWidth;
+      H = Math.min(Math.max(W * 0.65, 420), 700);
+      canvas.width  = W * devicePixelRatio;
+      canvas.height = H * devicePixelRatio;
+      canvas.style.height = H + 'px';
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+
+      // Build node objects with random positions around center
+      const cx = W / 2, cy = H / 2;
+      nodes = NODES_DEF.map((def, i) => {
+        if (def.id === 'valtikx') return { ...def, x: cx, y: cy, vx: 0, vy: 0, r: CAT[def.cat].size, pinned: true };
+        const angle = (i / (NODES_DEF.length - 1)) * Math.PI * 2;
+        const dist  = 120 + Math.random() * 180;
+        return {
+          ...def,
+          x: cx + Math.cos(angle) * dist,
+          y: cy + Math.sin(angle) * dist,
+          vx: 0, vy: 0,
+          r: CAT[def.cat].size
+        };
+      });
+
+      // Build edge objects
+      edges = EDGES_DEF.map(e => ({
+        source: nodes.find(n => n.id === e.source),
+        target: nodes.find(n => n.id === e.target),
+        strength: e.strength || 0.05
+      })).filter(e => e.source && e.target);
+
+      if (animId) cancelAnimationFrame(animId);
+      loop();
+    }
+
+    // ── Force simulation (lightweight, no D3 needed) ──────────
+    function simulate() {
+      const cx = W / 2, cy = H / 2;
+      nodes.forEach(n => {
+        if (n.pinned || n === drag) return;
+
+        // Repulsion between all nodes
+        nodes.forEach(m => {
+          if (m === n) return;
+          const dx = n.x - m.x, dy = n.y - m.y;
+          const dist2 = dx * dx + dy * dy || 1;
+          const dist  = Math.sqrt(dist2);
+          const minDist = n.r + m.r + 22;
+          if (dist < minDist) {
+            const f = (minDist - dist) / dist * 0.45;
+            n.vx += dx * f;
+            n.vy += dy * f;
+          }
+        });
+
+        // Spring attraction to center for orphan peripheral nodes
+        const dx0 = cx - n.x, dy0 = cy - n.y;
+        const dist0 = Math.sqrt(dx0*dx0 + dy0*dy0) || 1;
+        const rest = 260;
+        if (dist0 > rest) {
+          n.vx += dx0 * 0.003;
+          n.vy += dy0 * 0.003;
+        }
+
+        // Damping
+        n.vx *= 0.78;
+        n.vy *= 0.78;
+        n.x  += n.vx;
+        n.y  += n.vy;
+
+        // Boundary
+        n.x = Math.max(n.r + 8, Math.min(W - n.r - 8, n.x));
+        n.y = Math.max(n.r + 8, Math.min(H - n.r - 8, n.y));
+      });
+
+      // Spring edges
+      edges.forEach(e => {
+        if (!e.source || !e.target) return;
+        const dx = e.target.x - e.source.x;
+        const dy = e.target.y - e.source.y;
+        const dist = Math.sqrt(dx*dx + dy*dy) || 1;
+        const isCenterEdge = e.source.id === 'valtikx' || e.target.id === 'valtikx';
+        const rest = isCenterEdge ? 200 : 80;
+        const f = (dist - rest) / dist * e.strength;
+        const ax = dx * f, ay = dy * f;
+        if (!e.source.pinned && e.source !== drag) { e.source.vx += ax; e.source.vy += ay; }
+        if (!e.target.pinned && e.target !== drag) { e.target.vx -= ax; e.target.vy -= ay; }
+      });
+    }
+
+    // ── Draw ──────────────────────────────────────────────────
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Background pulse from center node
+      const center = nodes.find(n => n.id === 'valtikx');
+      if (center) {
+        const t = Date.now() / 1000;
+        for (let i = 0; i < 3; i++) {
+          const phase = (t * 0.5 + i * 0.33) % 1;
+          const rad = center.r + phase * 90;
+          const alpha = (1 - phase) * 0.18;
+          ctx.beginPath();
+          ctx.arc(center.x, center.y, rad, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(245,160,32,${alpha})`;
+          ctx.lineWidth = 1.5;
+          ctx.stroke();
+        }
+      }
+
+      // Draw edges
+      edges.forEach(e => {
+        if (!e.source || !e.target) return;
+        const isCenterEdge = e.source.id === 'valtikx' || e.target.id === 'valtikx';
+        const isHovered = hoveredNode && (e.source === hoveredNode || e.target === hoveredNode);
+
+        const srcCat = CAT[e.source.cat];
+        const tgtCat = CAT[e.target.cat];
+
+        const grad = ctx.createLinearGradient(e.source.x, e.source.y, e.target.x, e.target.y);
+        grad.addColorStop(0, srcCat.color + (isHovered ? 'CC' : isCenterEdge ? '55' : '30'));
+        grad.addColorStop(1, tgtCat.color + (isHovered ? 'CC' : isCenterEdge ? '55' : '30'));
+
+        ctx.beginPath();
+        ctx.moveTo(e.source.x, e.source.y);
+        ctx.lineTo(e.target.x, e.target.y);
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = isHovered ? 2 : isCenterEdge ? 1.2 : 0.8;
+        ctx.stroke();
+
+        // Animated particle along center edges
+        if (isCenterEdge) {
+          const t   = (Date.now() / 1800 + e.source.x * 0.001) % 1;
+          const px  = e.source.x + (e.target.x - e.source.x) * t;
+          const py  = e.source.y + (e.target.y - e.source.y) * t;
+          const col = e.source.id === 'valtikx' ? tgtCat.color : srcCat.color;
+          ctx.beginPath();
+          ctx.arc(px, py, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = col + 'CC';
+          ctx.fill();
+        }
+      });
+
+      // Draw nodes
+      nodes.forEach(n => {
+        const catDef = CAT[n.cat];
+        const isCenter  = n.id === 'valtikx';
+        const isHov = n === hoveredNode;
+        const scale = isHov ? 1.18 : 1;
+        const r = n.r * scale;
+
+        // Shadow
+        ctx.save();
+        ctx.shadowColor = catDef.color;
+        ctx.shadowBlur  = isHov ? 28 : isCenter ? 22 : 10;
+
+        // Node circle
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        if (isCenter) {
+          const grad = ctx.createRadialGradient(n.x - r*0.3, n.y - r*0.3, 0, n.x, n.y, r);
+          grad.addColorStop(0, '#FFF8E8');
+          grad.addColorStop(0.6, '#F5A020');
+          grad.addColorStop(1, '#C87A00');
+          ctx.fillStyle = grad;
+        } else {
+          ctx.fillStyle = catDef.color + (isHov ? 'FF' : 'DD');
+        }
+        ctx.fill();
+
+        // Border
+        ctx.strokeStyle = isCenter ? '#FAF7F2' : 'rgba(255,255,255,0.35)';
+        ctx.lineWidth   = isCenter ? 3 : isHov ? 2 : 1;
+        ctx.stroke();
+        ctx.restore();
+
+        // Emoji
+        const emojiSize = isCenter ? 26 : Math.max(13, r * 0.55);
+        ctx.font        = `${emojiSize}px serif`;
+        ctx.textAlign   = 'center';
+        ctx.textBaseline= 'middle';
+        ctx.fillText(n.emoji, n.x, isCenter ? n.y - 5 : n.y);
+
+        // Label
+        const lblSize = isCenter ? 11 : 9;
+        ctx.font = `700 ${lblSize}px "Space Grotesk", sans-serif`;
+        ctx.fillStyle = isCenter ? '#0B0B10' : '#FAF7F2';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+
+        if (isCenter) {
+          ctx.fillText('VALTIKX', n.x, n.y + r * 0.48);
+        } else {
+          // Label outside node
+          const angle = Math.atan2(n.y - H/2, n.x - W/2);
+          const lx    = n.x + Math.cos(angle) * (r + 10);
+          const ly    = n.y + Math.sin(angle) * (r + 10);
+          const maxW  = 80;
+          ctx.save();
+          ctx.shadowColor = 'rgba(0,0,0,0.9)';
+          ctx.shadowBlur  = 6;
+          ctx.fillStyle   = isHov ? catDef.color : 'rgba(250,247,242,0.85)';
+          // Wrap label
+          const words = n.label.split(' ');
+          let line = '', lines = [];
+          words.forEach(w => {
+            const test = line ? line + ' ' + w : w;
+            if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = w; }
+            else line = test;
+          });
+          lines.push(line);
+          const lineH = lblSize + 2;
+          const startY = ly - (lines.length - 1) * lineH / 2;
+          lines.forEach((l, i) => ctx.fillText(l, lx, startY + i * lineH));
+          ctx.restore();
+        }
+      });
+    }
+
+    function loop() {
+      simulate();
+      draw();
+      animId = requestAnimationFrame(loop);
+    }
+
+    // ── Interaction ───────────────────────────────────────────
+    function getNodeAt(x, y) {
+      return nodes.slice().reverse().find(n => {
+        const dx = n.x - x, dy = n.y - y;
+        return Math.sqrt(dx*dx + dy*dy) <= n.r + 6;
+      });
+    }
+
+    function toCanvasCoords(e) {
+      const rect = canvas.getBoundingClientRect();
+      const cl   = e.touches ? e.touches[0] : e;
+      return { x: cl.clientX - rect.left, y: cl.clientY - rect.top };
+    }
+
+    canvas.addEventListener('mousemove', (e) => {
+      const { x, y } = toCanvasCoords(e);
+      hoveredNode = getNodeAt(x, y);
+      canvas.style.cursor = hoveredNode ? 'pointer' : 'default';
+
+      if (hoveredNode) {
+        tooltip.innerHTML = `<strong>${hoveredNode.label}</strong>${hoveredNode.desc}<small>${hoveredNode.cat === 'BENEVOL' ? 'Bénévolat' : 'Expérience professionnelle'}</small>`;
+        tooltip.classList.add('visible');
+        const tx = Math.min(x + 14, W - 240);
+        const ty = Math.max(y - 50, 8);
+        tooltip.style.left = tx + 'px';
+        tooltip.style.top  = ty + 'px';
+      } else {
+        tooltip.classList.remove('visible');
+      }
+
+      if (drag) {
+        drag.x = x + offsetX;
+        drag.y = y + offsetY;
+        drag.vx = 0; drag.vy = 0;
+      }
+    });
+
+    canvas.addEventListener('mousedown', (e) => {
+      const { x, y } = toCanvasCoords(e);
+      const n = getNodeAt(x, y);
+      if (n && !n.pinned) { drag = n; offsetX = n.x - x; offsetY = n.y - y; }
+    });
+    canvas.addEventListener('mouseup',   () => { drag = null; });
+    canvas.addEventListener('mouseleave',() => { drag = null; hoveredNode = null; tooltip.classList.remove('visible'); });
+
+    // Touch
+    canvas.addEventListener('touchstart', (e) => {
+      const { x, y } = toCanvasCoords(e);
+      const n = getNodeAt(x, y);
+      if (n && !n.pinned) { drag = n; offsetX = n.x - x; offsetY = n.y - y; }
+    }, { passive: true });
+    canvas.addEventListener('touchmove', (e) => {
+      if (!drag) return;
+      e.preventDefault();
+      const { x, y } = toCanvasCoords(e);
+      drag.x = x + offsetX;
+      drag.y = y + offsetY;
+      drag.vx = 0; drag.vy = 0;
+    }, { passive: false });
+    canvas.addEventListener('touchend', () => { drag = null; });
+
+    // ── Init on scroll-into-view ──────────────────────────────
+    const section = document.getElementById('network');
+    if (section) {
+      new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !isVisible) {
+            isVisible = true;
+            init();
+          }
+        });
+      }, { threshold: 0.15 }).observe(section);
+    }
+
+    window.addEventListener('resize', () => { if (isVisible) init(); });
+  })();
+</script>
+
+<script>
+  /* ─── AVIS CAROUSEL ─── */
+  (function() {
+    const track    = document.getElementById('avis-track');
+    const dotsRow  = document.getElementById('avis-dots');
+    const prevBtn  = document.getElementById('avis-prev');
+    const nextBtn  = document.getElementById('avis-next');
+    if (!track) return;
+
+    const GAP     = 24;
+    const slides  = Array.from(track.querySelectorAll('.avis-slide'));
+    const TOTAL   = slides.length;
+    let current   = 0;
+
+    /* How many slides visible at once */
+    function getVisible() {
+      const w = window.innerWidth;
+      if (w <= 700)  return 1;
+      if (w <= 1100) return 2;
+      return 3;
+    }
+
+    /* Number of navigable positions */
+    function getMaxIdx() {
+      return Math.max(0, TOTAL - getVisible());
+    }
+
+    /* Compute and apply slide width via CSS variable, then move */
+    function layout() {
+      const vc      = getVisible();
+      const clipW   = track.parentElement.clientWidth;
+      const slideW  = (clipW - (vc - 1) * GAP) / vc;
+      // Push width to all slides via CSS custom property on track
+      track.style.setProperty('--slide-w', slideW + 'px');
+      slides.forEach(s => { s.style.flex = `0 0 ${slideW}px`; });
+      // Re-apply position without animation flash
+      track.style.transition = 'none';
+      track.style.transform  = `translateX(-${current * (slideW + GAP)}px)`;
+      requestAnimationFrame(() => {
+        track.style.transition = 'transform 0.5s cubic-bezier(.4,0,.2,1)';
+      });
+      buildDots();
+    }
+
+    /* Build dots — one per navigable position */
+    function buildDots() {
+      const max = getMaxIdx();
+      const needed = max + 1; // positions: 0 … max
+      dotsRow.innerHTML = '';
+      for (let i = 0; i <= max; i++) {
+        const d = document.createElement('span');
+        d.className = 'avis-cdot' + (i === current ? ' active' : '');
+        d.addEventListener('click', () => goTo(i));
+        dotsRow.appendChild(d);
+      }
+    }
+
+    function updateDots() {
+      const allDots = dotsRow.querySelectorAll('.avis-cdot');
+      allDots.forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(idx, getMaxIdx()));
+      const clipW  = track.parentElement.clientWidth;
+      const vc     = getVisible();
+      const slideW = (clipW - (vc - 1) * GAP) / vc;
+      track.style.transform = `translateX(-${current * (slideW + GAP)}px)`;
+      updateDots();
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+    window.addEventListener('resize', () => { current = Math.min(current, getMaxIdx()); layout(); });
+
+    /* ── Touch / swipe ── */
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let swiping     = false;
+
+    track.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      swiping     = false;
+    }, { passive: true });
+
+    track.addEventListener('touchmove', (e) => {
+      const dx = e.touches[0].clientX - touchStartX;
+      const dy = e.touches[0].clientY - touchStartY;
+      if (!swiping && Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 8) {
+        swiping = true;
+      }
+      if (swiping) e.preventDefault();
+    }, { passive: false });
+
+    track.addEventListener('touchend', (e) => {
+      if (!swiping) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+      swiping = false;
+    }, { passive: true });
+
+    /* Initial layout */
+    layout();
+  })();
+</script>
+</body>
+</html>
